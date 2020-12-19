@@ -32,11 +32,12 @@ create table ers_reimbursement(
 	reimb_resolved timestamp not null,
 	reimb_description text not null,
 	reimb_receipt bytea not null,
-	reimb_author int4 not null,
+--	reimb_author int4 not null,
 	reimb_resolver int4 not null,
 	reimb_status_id int4 not null,
 	reimb_type_id int4 not null,
 	--need to add fk below here
+	ers_reimb_author int4 unique not null references ers_user_roles(ers_user_role_id),
 	ers_reimbursement_status_fk int4 unique not null references ers_reimbursement_status(reimb_status_id),
 	ers_reimbursement_type_fk int4 unique not null references ers_reimbursement_type(reimb_type_id)
 );
