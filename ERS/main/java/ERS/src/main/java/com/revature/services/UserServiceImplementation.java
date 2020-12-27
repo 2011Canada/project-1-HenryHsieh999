@@ -17,11 +17,9 @@ public class UserServiceImplementation implements UserServiceInterface {
 		return ud.findUserByUsernameAndPassword(username, password);
 	}
 
-
 	public User findAccount(int id) {
 		return ud.findUserByUserId(id);
 	}
-
 
 	public List<User> findAllUsers() {
 		return ud.findAllUser();

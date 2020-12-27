@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,7 @@ import com.revature.services.UserServiceImplementation;
 
 public class UserController {
 
-	private User us = new UserServiceImplementation(new UserPostgresDAO());
+	private UserServiceImplementation usi = new UserServiceImplementation(new UserPostgresDAO());
 	
 	private ObjectMapper om = new ObjectMapper();
 	
@@ -29,7 +30,7 @@ public class UserController {
 		} else if(!sess.getAttribute("User-Role").equals("Admin")) {
 			throw new UnauthorizedException();
 		}
-		List<User> allusers = us.getAllUsers();
+		List<User> allusers = usi.findAllUsers();
 		res.setStatus(200);
 		res.getWriter().write(om.writeValueAsString(allusers));
 		
