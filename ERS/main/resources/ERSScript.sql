@@ -51,11 +51,17 @@ insert into ers_users (ers_username, ers_password,user_first_name,user_last_name
 --insert manager data
 insert into ers_user_roles (user_role) values ('manager');
 insert into ers_users (ers_username, ers_password,user_first_name,user_last_name,user_email, user_roles_fk) values ('super', 'pword', 'Super', 'User', 'su@gmail.com', 4);
+--insert reimbursement data
+--insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, )
 
 --enhanced select statements for db queries
 select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk;
-
-
+--login query
+select * from ers_users where ers_username = 'mtv' and ers_password = 'cat5';
+select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_username = 'mtv' and ers_password = 'cat5';
+select * from ers_users where ers_username = 'ender';
+--reimbursement query
+--select * from ers_reimbursement er 
 
 --simple select statements to check tables 
 select * from ers_reimbursement;
