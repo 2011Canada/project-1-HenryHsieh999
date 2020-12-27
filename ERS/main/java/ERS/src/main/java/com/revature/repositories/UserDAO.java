@@ -10,8 +10,7 @@ public interface UserDAO {
 	
 	public User findUserByUsernameAndPassword(String username, String password) throws UserNotFoundException;
 	public User findUserIdByUsername(String username) throws UserNotFoundException;
-	public List<User> findAllLockedUserAccounts();
-	public List<User> findAllBankAccountsUnderSameOwner(int userId);
+
 	public User findUserByUserId(int id);
 	public User findAccountId(int customerId);
 	public List<User> findAllUser();
@@ -29,18 +28,8 @@ public interface UserDAO {
 	public User checkUserAccountStatus(int userId);
 	public User checkUserAccountType(int userId);
 
-	public User moneyTransferToAnotherAccount(User u);
-
-	public User acceptMoneyTransfer(int userId);
 	//system auto delete money transfer after accepting
 	public User deleteMoneyTransfer(int transferId);
-	public User getMoneyTransferID(int userId);
-	
-	public List<User> viewAllIncomingMoneyTranfers(int userId);
-	public List<User> viewAllOutgoingMoneyTransfers(int userId);
-	
-	
-	//use bufferreader
-//	public User viewLog();
+
 	
 }

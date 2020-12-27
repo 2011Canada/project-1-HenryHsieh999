@@ -19,20 +19,20 @@ public class UserPostgresDAO implements UserDAO{
 	public User findUserByUsernameAndPassword(String username, String password) throws UserNotFoundException {
 		Connection conn = cf.getConnection();
 		try {
-			String sql = "select * from users where user_name = ? and user_password = ? ;";
+			String sql = "select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_username = ? and ers_password = ?;";
 			PreparedStatement getUser = conn.prepareStatement(sql);
 			getUser.setString(1, username);
 			getUser.setString(2, password);
-			
 			ResultSet res = getUser.executeQuery();
 			if(res.next()) {
 				User u = new User();
-				u.setUserId(res.getInt("user_id"));
-				u.setFirstName(res.getString("fname"));
-				u.setLastName(res.getString("lname"));
-				u.setUsername(res.getString("user_name"));
-				u.setPassword(res.getString("user_password"));
-				u.setTpe(res.getString("tpe"));
+				u.setUserId(res.getInt("ers_user_role_id"));
+				u.setFirstName(res.getString("user_first_name"));
+				u.setLastName(res.getString("user_last_name"));
+				u.setUsername(res.getString("ers_username"));
+				u.setPassword(res.getString("ers_password"));
+				u.setEmail(res.getString("user_email"));
+				u.setTpe(res.getString("user_role"));
 				return u;
 			}else {
 				throw new UserNotFoundException();
@@ -45,17 +45,18 @@ public class UserPostgresDAO implements UserDAO{
 		}
 		return null;
 	}
+	
 	public User findUserIdByUsername(String username) throws UserNotFoundException {
 		Connection conn = cf.getConnection();
 		try {
-			String sql = "select * from users where user_name = ?;";
+			String sql = "select * from ers_users where ers_username = ?;";
 			PreparedStatement getUser = conn.prepareStatement(sql);
 			getUser.setString(1, username);
 			
 			ResultSet res = getUser.executeQuery();
 			if(res.next()) {
 				User u = new User();
-				u.setUserId(res.getInt("user_id"));
+				u.setUserId(res.getInt("user_roles_fk"));
 				return u;
 			}else {
 				throw new UserNotFoundException();
@@ -121,10 +122,7 @@ public class UserPostgresDAO implements UserDAO{
 			u.setUserId(res.getInt("user_id"));
 			u.setFirstName(res.getString("fname"));
 			u.setLastName(res.getString("lname"));
-			u.setBalance(res.getDouble("balance"));
 			u.setTpe(res.getString("tpe"));
-			u.setUserAccountStatus(res.getString("user_status"));
-			u.setAccountId(res.getInt("account_id"));
 			return u;
 		}
 		
@@ -179,7 +177,6 @@ public class UserPostgresDAO implements UserDAO{
 			while(res.next()) {
 				User u = new User();
 				u.setUserId(res.getInt("customer_id"));
-				u.setBalance(res.getDouble("balance"));
 				return u;
 			}
 		} catch(SQLException e) {
@@ -195,7 +192,6 @@ public class UserPostgresDAO implements UserDAO{
 		try {
 			String sql = "update account set balance = ? where customer_id = ?;";
 			PreparedStatement updateBankAccountBalance = conn.prepareStatement(sql);
-			updateBankAccountBalance.setDouble(1, u.getBalance());
 			updateBankAccountBalance.setInt(2, u.getUserId());
 			updateBankAccountBalance.executeUpdate();
 			
@@ -216,7 +212,6 @@ public class UserPostgresDAO implements UserDAO{
 			while(res.next()) {
 				User u = new User();
 				u.setUserId(res.getInt("user_id"));
-				u.setUserAccountStatus(res.getString("user_status"));
 				return u;
 			}
 		} catch(SQLException e) {
@@ -257,8 +252,6 @@ public class UserPostgresDAO implements UserDAO{
 		if(res.next()) {
 			User u = new User();
 			u.setUserId(res.getInt("customer_id"));
-			u.setAccountId(res.getInt("account_id"));
-			u.setBalance(res.getDouble("balance"));
 			return u;
 		}
 		
@@ -278,8 +271,8 @@ public class UserPostgresDAO implements UserDAO{
 				
 				ResultSet res = s.executeQuery(sql);
 				while(res.next()) {
-					Customer c = new Customer(res.getInt("user_id"), res.getInt("account_id"), res.getString("user_name"), res.getString("fname"), res.getString("lname"), res.getString("user_status"), res.getDouble("balance"), res.getString("tpe"));
-					u.add(c);
+//					Customer c = new Customer(res.getInt("user_id"), res.getInt("account_id"), res.getString("user_name"), res.getString("fname"), res.getString("lname"), res.getString("user_status"), res.getDouble("balance"), res.getString("tpe"));
+//					u.add(c);
 				}
 			}catch(SQLException e) {
 				e.printStackTrace();
@@ -296,8 +289,8 @@ public class UserPostgresDAO implements UserDAO{
 			Statement s = conn.createStatement();
 			ResultSet res = s.executeQuery(sql);
 			while(res.next()) {
-				Customer c = new Customer(res.getInt("user_id"), res.getInt("account_id"), res.getString("user_name"), res.getString("fname"), res.getString("lname"), res.getString("user_status"), res.getDouble("balance"), res.getString("tpe"));
-				u.add(c);
+//				Customer c = new Customer(res.getInt("user_id"), res.getInt("account_id"), res.getString("user_name"), res.getString("fname"), res.getString("lname"), res.getString("user_status"), res.getDouble("balance"), res.getString("tpe"));
+//				u.add(c);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -306,76 +299,7 @@ public class UserPostgresDAO implements UserDAO{
 		}
 		return u;
 	}
-	public List<User> findAllBankAccountsUnderSameOwner(int userId){
-		Connection conn = cf.getConnection();
-		List<User> u = new ArrayList<User>();
-		try {
-			String sql = "select * from users u left join account a on u.user_id = a.customer_id where user_id = ?;";
-			PreparedStatement findAllBankAccountsUnderSameOwner = conn.prepareStatement(sql);
-			findAllBankAccountsUnderSameOwner.setInt(1, userId);
-			ResultSet res = findAllBankAccountsUnderSameOwner.executeQuery();
-			while(res.next()) {
-				Customer c = new Customer(res.getInt("user_id"), res.getInt("account_id"), res.getString("user_name"), res.getString("fname"), res.getString("lname"), res.getString("user_status"), res.getDouble("balance"), res.getString("tpe"));
-				u.add(c);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cf.releaseConnection(conn);
-		}
-		return u;
-	}
-	public List<User> findAllLockedUserAccounts() {
-		Connection conn = cf.getConnection();
-		List<User> u = new ArrayList<User>();
-		try {
-			String sql = "select * from users where user_status = 'inactive' order by user_id asc;";
-			PreparedStatement getBalance = conn.prepareStatement(sql);
-			ResultSet res = getBalance.executeQuery();
-			while(res.next()) {
-				Customer c = new Customer(res.getInt("user_id"));
-				u.add(c);
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cf.releaseConnection(conn);
-		}
-		return u;
-	}
-	
-	
-	public User moneyTransferToAnotherAccount(User u) {
-		Connection conn = cf.getConnection();
-		try {
-			String sql = "insert into money_transfer (receiver_account_id, balance, sender_account_id, money_transfer_status) values (?,?,?,?);";
-			PreparedStatement moneyTransferToAnotherAccount = conn.prepareStatement(sql);
-			moneyTransferToAnotherAccount.setInt(1, u.getReceiverAccountID());
-			moneyTransferToAnotherAccount.setDouble(2, u.getTempMoneyTransfer());
-			moneyTransferToAnotherAccount.setInt(3, u.getSenderAccountID());
-			moneyTransferToAnotherAccount.setString(4, "pending");
-			moneyTransferToAnotherAccount.executeUpdate();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cf.releaseConnection(conn);
-		}
-		return u;
-	
-	}
-	public User acceptMoneyTransfer(int userId) {
-		Connection conn = cf.getConnection();
-		try {
-			String sql = "update account as a set balance = a.balance + mt.balance from money_transfer as mt where a.account_id = mt.receiver_account_id;";
-			PreparedStatement updateBankAccountBalance = conn.prepareStatement(sql);
-			updateBankAccountBalance.executeUpdate();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cf.releaseConnection(conn);
-		}
-		return null;
-	}
+
 	
 	public User deleteMoneyTransfer(int transferId) {
 		Connection conn = cf.getConnection();
@@ -384,68 +308,6 @@ public class UserPostgresDAO implements UserDAO{
 			PreparedStatement deleteMoneyTransfer = conn.prepareStatement(sql);
 			deleteMoneyTransfer.setInt(1, transferId);
 			deleteMoneyTransfer.executeUpdate();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cf.releaseConnection(conn);
-		}
-		return null;
-	}
-
-	public List<User> viewAllIncomingMoneyTranfers(int userId) {
-		Connection conn = cf.getConnection();
-		List<User> u = new ArrayList<User>();
-		try {
-			String sql = "select * from money_transfer where receiver_account_id = ?;";
-			PreparedStatement viewAllIncomingMoneyTranfers = conn.prepareStatement(sql);
-			viewAllIncomingMoneyTranfers.setInt(1, userId);
-			ResultSet res = viewAllIncomingMoneyTranfers.executeQuery();
-			while(res.next()) {
-				Customer c = new Customer(res.getInt("receiver_account_id"), res.getDouble("balance"), res.getInt("sender_account_id"), res.getString("money_transfer_status"), res.getInt("transfer_id"));
-				u.add(c);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cf.releaseConnection(conn);
-		}
-		return u;
-	}
-	
-	public List<User> viewAllOutgoingMoneyTransfers(int userId) {
-		Connection conn = cf.getConnection();
-		List<User> u = new ArrayList<User>();
-		try {
-			String sql = "select * from money_transfer where sender_account_id = ?;";
-			PreparedStatement viewAllOutgoingMoneyTransfers = conn.prepareStatement(sql);
-			viewAllOutgoingMoneyTransfers.setInt(1, userId);
-			ResultSet res = viewAllOutgoingMoneyTransfers.executeQuery();
-			while(res.next()) {
-				Customer c = new Customer(res.getInt("receiver_account_id"), res.getDouble("balance"), res.getInt("sender_account_id"), res.getString("money_transfer_status"), res.getInt("transfer_id"));
-				u.add(c);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cf.releaseConnection(conn);
-		}
-		return u;
-	}
-	public User getMoneyTransferID(int userId) {
-		Connection conn = cf.getConnection();
-		try {
-			String sql = "select * from users u left join money_transfer mt on u.user_id = mt.receiver_account_id where receiver_account_id = ?;";
-			PreparedStatement getMoneyTransferID = conn.prepareStatement(sql);
-			getMoneyTransferID.setInt(1, userId);
-			ResultSet res = getMoneyTransferID.executeQuery();
-			while(res.next()) {
-				User u = new User();
-				u.setUserId(res.getInt("user_id"));
-				u.setBalance(res.getDouble("balance"));
-				u.setTransferID(res.getInt("transfer_id"));
-				u.setTransferState(res.getString("money_transfer_status"));
-				return u;
-			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
