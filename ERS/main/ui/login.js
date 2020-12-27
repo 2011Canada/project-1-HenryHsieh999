@@ -20,12 +20,16 @@ async function loginSubmit(e){
         })
         let user = await res.json()
         console.log(user);
+        console.log(user.tpe)
+        if(user.tpe === "employee"){
+            window.location = "./employeeMain.html"
+        }else if(user.tpe === "manager"){
+            window.location = "./managerMain.html"
+        }
     } catch(e) {
         console.log(e);
     }
-    
 }
-
 document.getElementsByTagName("form")[0].addEventListener('submit', loginSubmit)
 
 
