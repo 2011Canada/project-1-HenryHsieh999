@@ -17,12 +17,12 @@ public class UserServiceImplementation implements UserServiceInterface {
 		return ud.findUserByUsernameAndPassword(username, password);
 	}
 
-	@Override
+
 	public User findAccount(int id) {
 		return ud.findUserByUserId(id);
 	}
 
-	@Override
+
 	public List<User> findAllUsers() {
 		return ud.findAllUser();
 	}
