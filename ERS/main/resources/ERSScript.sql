@@ -22,7 +22,6 @@ create table ers_users(
 	user_first_name text,
 	user_last_name text,
 	user_email text,
-	user_role_id int4,
 	user_roles_fk int4 unique not null references ers_user_roles(ers_user_role_id)
 );
 create table ers_reimbursement(
@@ -42,6 +41,23 @@ create table ers_reimbursement(
 	ers_reimbursement_type_fk int4 unique not null references ers_reimbursement_type(reimb_type_id)
 );
 
+--insert employee data
+insert into ers_user_roles (user_role) values ('employee');
+insert into ers_users (ers_username, ers_password,user_first_name,user_last_name,user_email, user_roles_fk) values ('mtv', 'cat5', 'Tavi', 'Melody', 'mtv@gmail.com', 1);
+insert into ers_user_roles (user_role) values ('employee');
+insert into ers_users (ers_username, ers_password,user_first_name,user_last_name,user_email, user_roles_fk) values ('laser', 'beam3', 'Cloud', 'Muramana', 'cm@gmail.com', 2);
+insert into ers_user_roles (user_role) values ('employee');
+insert into ers_users (ers_username, ers_password,user_first_name,user_last_name,user_email, user_roles_fk) values ('ender', 'truelight9', 'Storm', 'Shadow', 'ss@gmail.com', 3);
+--insert manager data
+insert into ers_user_roles (user_role) values ('manager');
+insert into ers_users (ers_username, ers_password,user_first_name,user_last_name,user_email, user_roles_fk) values ('super', 'pword', 'Super', 'User', 'su@gmail.com', 4);
+
+--enhanced select statements for db queries
+select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk;
+
+
+
+--simple select statements to check tables 
 select * from ers_reimbursement;
 select * from ers_reimbursement_status;
 select * from ers_reimbursement_type;
