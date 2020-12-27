@@ -25,10 +25,14 @@ public class UserController {
 		
 		HttpSession sess = req.getSession();
 		
-		if(sess.getAttribute("User-Role") == null) {
+		if(sess.getAttribute("tpe") == null) {
 			throw new UnauthenticatedException();
-		} else if(!sess.getAttribute("User-Role").equals("Admin")) {
-			throw new UnauthorizedException();
+		} else if(sess.getAttribute("tpe").equals("employee")) {
+			//go to employee page
+			System.out.println("employee");
+		} else if(sess.getAttribute("tpe").equals("manager")) {
+			//go to manager page
+			System.out.println("manager");
 		}
 		List<User> allusers = usi.findAllUsers();
 		res.setStatus(200);

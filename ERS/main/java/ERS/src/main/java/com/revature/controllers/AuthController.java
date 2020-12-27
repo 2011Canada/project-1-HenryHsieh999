@@ -24,9 +24,19 @@ public class AuthController {
 		//use your session to keep track of your user permission level
 		HttpSession sess = req.getSession();
 		//user.getRole
-		sess.setAttribute("User-Role", "Admin");
-		res.setStatus(200);
-		res.getWriter().write(om.writeValueAsString(u));
+		if(u.getTpe().equals("employee")) {
+			sess.setAttribute("user-role", "employee");
+			System.out.println("employee");
+			res.setStatus(200);
+			res.getWriter().write(om.writeValueAsString(u));
+		}else if(u.getTpe().equals("manager")){
+			System.out.println("manager");
+			sess.setAttribute("user-role", "manager");
+			res.setStatus(200);
+			res.getWriter().write(om.writeValueAsString(u));
+		}
+//		res.setStatus(200);
+//		res.getWriter().write(om.writeValueAsString(u));
 	}
 	
 	
