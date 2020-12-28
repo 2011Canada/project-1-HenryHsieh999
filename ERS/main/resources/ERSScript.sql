@@ -6,15 +6,9 @@ create table ers_user_roles(
 	ers_user_role_id serial primary key,
 	user_role text
 );
-create table ers_reimbursement_status(
-	reimb_status_id serial primary key,
-	reimb_status text
-);
 
-create table ers_reimbursement_type(
-	reimb_type_id serial primary key,
-	reimb_type text
-);
+
+
 create table ers_users(
 	ers_users_id serial primary key,
 	ers_username text,
@@ -24,21 +18,17 @@ create table ers_users(
 	user_email text,
 	user_roles_fk int4 unique not null references ers_user_roles(ers_user_role_id)
 );
+
+--drop table ers_reimbursement;
 create table ers_reimbursement(
 	reimb_id serial primary key,
-	reimb_amount int4 not null,
-	reimb_submitted timestamp not null,
-	reimb_resolved timestamp not null,
-	reimb_description text not null,
-	reimb_receipt bytea not null,
---	reimb_author int4 not null,
-	reimb_resolver int4 not null,
-	reimb_status_id int4 not null,
-	reimb_type_id int4 not null,
+	reimb_amount numeric(10,2) not null,
+	reimb_submitted timestamp,
+	reimb_resolved timestamp,
+	reimb_status text,
+	reimb_type text,
 	--need to add fk below here
-	ers_reimb_author int4 unique not null references ers_user_roles(ers_user_role_id),
-	ers_reimbursement_status_fk int4 unique not null references ers_reimbursement_status(reimb_status_id),
-	ers_reimbursement_type_fk int4 unique not null references ers_reimbursement_type(reimb_type_id)
+	ers_reimb_author int4 not null references ers_user_roles(ers_user_role_id)
 );
 
 --insert employee data
@@ -56,16 +46,22 @@ insert into ers_users (ers_username, ers_password,user_first_name,user_last_name
 
 --enhanced select statements for db queries
 select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk;
+select * from ers_users eu left join ers_reimbursement er on eu.ers_users_id = er.ers_reimb_author;
+select * from ers_reimbursement where ers_reimb_author = 1;
 --login query
 select * from ers_users where ers_username = 'mtv' and ers_password = 'cat5';
 select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_username = 'mtv' and ers_password = 'cat5';
 select * from ers_users where ers_username = 'ender';
+--find User ID by ers_user_role_id
+select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_user_role_id = 2;
+--find User ID by ers_username
+select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_username = 'ender'; 
 --reimbursement query
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (500.15, CURRENT_TIMESTAMP, 'pending', 'lodging', 1);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (1241.15, CURRENT_TIMESTAMP, 'pending', 'lodging', 1);
 --select * from ers_reimbursement er 
 
 --simple select statements to check tables 
 select * from ers_reimbursement;
-select * from ers_reimbursement_status;
-select * from ers_reimbursement_type;
 select * from ers_user_roles;
 select * from ers_users;
