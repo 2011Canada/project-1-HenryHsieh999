@@ -11,12 +11,13 @@ public class EmployeeServiceImplementation implements EmployeeServiceInterface{
 	public EmployeeServiceImplementation(UserDAO ud) {
 		this.ud = ud;
 	}
-	public User addReimbursementRequest(User id) {
-		return ud.addReimbursementRequest(id);
-	}
 
 	public List<User> viewPastTickets(int id) {
 		return ud.viewPastTickets(id);
+	}
+
+	public User addReimbursementRequest(int u, Double amount, String reimbursemntType) {
+		return ud.addReimbursementRequest(u, amount, reimbursemntType);
 	}
 
 }

@@ -13,7 +13,6 @@ import java.util.TimeZone;
 
 import com.revature.exceptions.UserNotFoundException;
 import com.revature.models.Account;
-import com.revature.models.Customer;
 import com.revature.models.Employee;
 import com.revature.models.User;
 import com.revature.util.ConnectionFactory;
@@ -321,18 +320,18 @@ public class UserPostgresDAO implements UserDAO{
 		return null;
 	}
 
-	public User addReimbursementRequest(User u) {
+	public User addReimbursementRequest(int u, Double amount, String reimbursemntType) {
 		Connection conn = cf.getConnection();
 		try {
 			String sql = "insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (?, ?, ?, ?, ?);";
 			PreparedStatement insertReimbursementRequest = conn.prepareStatement(sql);
 			final java.util.Date today = new java.util.Date();
 			final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
-			insertReimbursementRequest.setDouble(1, u.getAmount());
+			insertReimbursementRequest.setDouble(1, amount);
 			insertReimbursementRequest.setTimestamp(2, todaySQL);
 			insertReimbursementRequest.setString(3, "pending");
-			insertReimbursementRequest.setString(4, u.getReimbursementType());
-			insertReimbursementRequest.setInt(5, u.getUserId());
+			insertReimbursementRequest.setString(4, reimbursemntType);
+			insertReimbursementRequest.setInt(5, u);
 			insertReimbursementRequest.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -342,7 +341,6 @@ public class UserPostgresDAO implements UserDAO{
 		return null;
 	}
 
-	@Override
 	public List<User> viewPastTickets(int id) {
 		Connection conn = cf.getConnection();
 		List<User> u = new ArrayList<User>();

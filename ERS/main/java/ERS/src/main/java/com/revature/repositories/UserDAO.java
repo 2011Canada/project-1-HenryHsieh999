@@ -31,9 +31,8 @@ public interface UserDAO {
 	//system auto delete money transfer after accepting
 	public User deleteMoneyTransfer(int transferId);
 	//add reimbursement
-	public User addReimbursementRequest(User u);
+	public User addReimbursementRequest(int u, Double amount, String reimbursementType);
 	//view past Tickets
 	public List<User> viewPastTickets(int id);
-
 	
 }

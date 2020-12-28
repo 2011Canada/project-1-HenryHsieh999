@@ -1,36 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-
-<servlet>
-  <description></description>
-  <display-name>FrontController</display-name>
-  <servlet-name>FrontController</servlet-name>
-  <servlet-class>com.revature.servlets.FrontController</servlet-class>
-  <init-param>
-  	<param-name>DefaultRole</param-name>
-  	<param-value>User</param-value>
-  </init-param>
-</servlet>
-<servlet-mapping>
-  <servlet-name>FrontController</servlet-name>
-  <url-pattern>/login</url-pattern>
-</servlet-mapping>
-
-<filter>
-     <filter-name>CORS</filter-name>
-     <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
-     <init-param>
-         <param-name>cors.allowed.origins</param-name>
-         <param-value>*</param-value>
-     </init-param>
-     <init-param>
-         <param-name>cors.allowed.methods</param-name>
-         <param-value>GET, POST, HEAD, OPTIONS, PUT, DELETE</param-value>
-     </init-param>
- </filter>
-
- <filter-mapping>
-     <filter-name>CORS</filter-name>
-     <url-pattern>/*</url-pattern>
- </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FrontController</display-name>
+    <servlet-name>FrontController</servlet-name>
+    <servlet-class>com.revature.servlets.FrontController</servlet-class>
+    <init-param>
+      <param-name>DefaultRole</param-name>
+      <param-value>User</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FrontController</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeController</display-name>
+    <servlet-name>EmployeeController</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeController</servlet-class>
+    <init-param>
+      <param-name>DefaultRole</param-name>
+      <param-value>Employee</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeController</servlet-name>
+    <url-pattern>/reimbursementRequest</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>CORS</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    <init-param>
+      <param-name>cors.allowed.origins</param-name>
+      <param-value>*</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.allowed.methods</param-name>
+      <param-value>GET, POST, HEAD, OPTIONS, PUT, DELETE</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CORS</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeWelcome</display-name>
+    <servlet-name>EmployeeWelcome</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeWelcome</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeWelcome</servlet-name>
+    <url-pattern>/EmployeeWelcome</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeViewAllPastTicketsServlet</display-name>
+    <servlet-name>EmployeeViewAllPastTicketsServlet</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeViewAllPastTicketsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeViewAllPastTicketsServlet</servlet-name>
+    <url-pattern>/EmployeeViewAllPastTicketsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewAllPastTickets</display-name>
+    <servlet-name>ViewAllPastTickets</servlet-name>
+    <servlet-class>com.revature.controllers.ViewAllPastTickets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAllPastTickets</servlet-name>
+    <url-pattern>/ViewAllPastTickets</url-pattern>
+  </servlet-mapping>
 </web-app>
