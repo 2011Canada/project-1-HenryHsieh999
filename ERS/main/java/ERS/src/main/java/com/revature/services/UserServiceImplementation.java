@@ -20,9 +20,15 @@ public class UserServiceImplementation implements UserServiceInterface {
 	public User findAccount(int id) {
 		return ud.findUserByUserId(id);
 	}
+	public User findUserIDByUsername(String username) {
+		return ud.findUserIdByUsername(username);
+	}
 
 	public List<User> findAllUsers() {
 		return ud.findAllUser();
 	}
+
+	
+	
 
 }

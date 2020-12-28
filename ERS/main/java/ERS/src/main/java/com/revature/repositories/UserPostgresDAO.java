@@ -5,12 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import com.revature.exceptions.UserNotFoundException;
 import com.revature.models.Account;
 import com.revature.models.Customer;
+import com.revature.models.Employee;
 import com.revature.models.User;
 import com.revature.util.ConnectionFactory;
 
@@ -49,7 +53,7 @@ public class UserPostgresDAO implements UserDAO{
 	public User findUserIdByUsername(String username) throws UserNotFoundException {
 		Connection conn = cf.getConnection();
 		try {
-			String sql = "select * from ers_users where ers_username = ?;";
+			String sql = "select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_username = ?;";
 			PreparedStatement getUser = conn.prepareStatement(sql);
 			getUser.setString(1, username);
 			
@@ -69,6 +73,7 @@ public class UserPostgresDAO implements UserDAO{
 		}
 		return null;
 	}
+	
 	public User createNewCustomerAccount(User u) {
 		Connection conn = cf.getConnection();
 		try {
@@ -112,17 +117,17 @@ public class UserPostgresDAO implements UserDAO{
 	public User findUserByUserId(int id) {
 		Connection conn = cf.getConnection();
 		try {
-			String sql = "select * from users u left join account a on u.user_id = a.customer_id where user_id = ?;";
+			String sql = "select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_user_role_id = ?;";
 			PreparedStatement findUserByid = conn.prepareStatement(sql);
 			findUserByid.setInt(1, id);
-			
 			ResultSet res = findUserByid.executeQuery();
 		if(res.next()) {
 			User u = new User();
-			u.setUserId(res.getInt("user_id"));
-			u.setFirstName(res.getString("fname"));
-			u.setLastName(res.getString("lname"));
-			u.setTpe(res.getString("tpe"));
+			u.setUserId(res.getInt("ers_user_role_id"));
+			u.setFirstName(res.getString("user_first_name"));
+			u.setLastName(res.getString("user_last_name"));
+			u.setEmail(res.getString("user_email"));
+			u.setTpe(res.getString("user_role"));
 			return u;
 		}
 		
@@ -314,6 +319,48 @@ public class UserPostgresDAO implements UserDAO{
 			cf.releaseConnection(conn);
 		}
 		return null;
+	}
+
+	public User addReimbursementRequest(User u) {
+		Connection conn = cf.getConnection();
+		try {
+			String sql = "insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (?, ?, ?, ?, ?);";
+			PreparedStatement insertReimbursementRequest = conn.prepareStatement(sql);
+			final java.util.Date today = new java.util.Date();
+			final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
+			insertReimbursementRequest.setDouble(1, u.getAmount());
+			insertReimbursementRequest.setTimestamp(2, todaySQL);
+			insertReimbursementRequest.setString(3, "pending");
+			insertReimbursementRequest.setString(4, u.getReimbursementType());
+			insertReimbursementRequest.setInt(5, u.getUserId());
+			insertReimbursementRequest.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cf.releaseConnection(conn);
+		}
+		return null;
+	}
+
+	@Override
+	public List<User> viewPastTickets(int id) {
+		Connection conn = cf.getConnection();
+		List<User> u = new ArrayList<User>();
+		try {
+			String sql = "select * from ers_reimbursement where ers_reimb_author = ?;";
+			PreparedStatement viewPastTickets = conn.prepareStatement(sql);
+			viewPastTickets.setInt(1, id);
+			ResultSet res = viewPastTickets.executeQuery();
+			while(res.next()) {
+				Employee e = new Employee(res.getInt("ers_reimb_author"), res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getTimestamp("reimb_submitted"), res.getTimestamp("reimb_resolved"), res.getString("reimb_status"), res.getString("reimb_type"));
+				u.add(e);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cf.releaseConnection(conn);
+		}
+		return u;
 	}
 
 }

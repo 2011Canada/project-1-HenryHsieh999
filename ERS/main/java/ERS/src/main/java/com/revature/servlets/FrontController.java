@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.controllers.AuthController;
+import com.revature.controllers.EmployeeController;
 import com.revature.controllers.ErrorController;
-import com.revature.controllers.UserController;
+import com.revature.controllers.ManagerController;
 
 public class FrontController extends HttpServlet {
 	
@@ -18,7 +19,7 @@ public class FrontController extends HttpServlet {
 	
 	private ErrorController errorController = new ErrorController();
 	
-	private UserController userController = new UserController();
+	private ManagerController userController = new ManagerController();
 
 	protected void directControlRouter(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//how to get a value from your init params
@@ -63,7 +64,7 @@ public class FrontController extends HttpServlet {
 				}
 				break;
 			}
-			case "/users": {
+			case "/employeeMain": {
 				switch (req.getMethod()) {
 					case "GET":{
 						userController.findAllUsers(req, res);
@@ -92,9 +93,35 @@ public class FrontController extends HttpServlet {
 				}
 				break;
 			}
-			case "/users/" : {
-				
-			}
+			case "/reimbursementRequest": {
+				switch (req.getMethod()) {
+					case "GET":{
+						res.setStatus(400);
+						res.getWriter().write("Method Not Supported");
+						break;
+					}
+					case "POST":{
+						EmployeeController.addReimbursementRequest(req, res);
+						break;
+					}
+					case "PUT":{
+						res.setStatus(400);
+						res.getWriter().write("Method Not Supported");
+						break;
+					}
+					case "DELETE":{
+						res.setStatus(400);
+						res.getWriter().write("Method Not Supported");
+						break;
+					}
+					default:{
+						res.setStatus(400);
+						res.getWriter().write("Method Not Supported");
+						break;
+					}
+				}
+				break;
+			}			
 			default:{
 				res.setStatus(404);
 				res.getWriter().write("No Such Resource");

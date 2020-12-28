@@ -11,6 +11,7 @@ import com.revature.models.Credentials;
 import com.revature.models.User;
 import com.revature.repositories.UserPostgresDAO;
 import com.revature.services.UserServiceImplementation;
+import com.revature.servlets.FrontController;
 
 public class AuthController {
 	

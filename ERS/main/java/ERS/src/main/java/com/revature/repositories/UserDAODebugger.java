@@ -7,9 +7,9 @@ public class UserDAODebugger {
 	public static void main(String[] args) throws UserNotFoundException {
 		// TODO Auto-generated method stub
 		UserDAO ud = new UserPostgresDAO();
-		User u = new User();
+		User u = new User(149.54, null, null, "travel", 1);
 		
-		System.out.println(ud.findUserByUsernameAndPassword("ender", "truelight9"));
+//		System.out.println(ud.findUserByUsernameAndPassword("ender", "truelight9"));
 //		System.out.println(ud.findAllCustomer());
 //		System.out.println(ud.viewBalance(7));
 //		System.out.println(ud.createNewCustomerAccount(u1));
@@ -18,7 +18,7 @@ public class UserDAODebugger {
 //		System.out.println(ud.approveCustomerBankAccount(3));
 //		System.out.println(ud.rejectCustomerBankAccount(3));
 //		System.out.println(ud.findUserByUserId(2));
-//		System.out.println(ud.findUserIdByUsername("bbbb"));
+//		System.out.println(ud.findUserIdByUsername("ender"));
 //		System.out.println(u.getUserId());
 //		System.out.println(ud.updateBankAccountBalance(u2));
 //		System.out.println(ud.findAllLockedUserAccounts());
@@ -27,5 +27,7 @@ public class UserDAODebugger {
 //		System.out.println(ud.findAccountId(2));
 //		System.out.println(ud.checkUserAccountStatus(6));
 //		System.out.println(ud.deleteMoneyTransfer(2));
+//		System.out.println(ud.addReimbursementRequest(u));
+		System.out.println(ud.viewPastTickets(1));
 	}
 }
