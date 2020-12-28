@@ -34,7 +34,7 @@ $(document).on('click','.js-menu_toggle.opened',function(e){
 	});
 	$('.list_load').slideUp(300);
 });    
-});
+
 
 async function reimbursementSubmit(e){
     e.preventDefault();
@@ -71,4 +71,4 @@ document.getElementsByTagName("form")[0].addEventListener('submit', reimbursemen
 
 
 
-
+});
