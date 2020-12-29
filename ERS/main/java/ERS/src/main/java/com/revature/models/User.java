@@ -67,6 +67,15 @@ public class User{
 		this.reimbursementStatus = reimbStatus;
 		this.reimbursementType = reimbType;		
 	}
+	public User(int reimbId, double amount, Timestamp reimbSubmitted, String reimbStatus, String reimbType, int ersReimbAuthor) {
+		super();
+		this.reimbId = reimbId;
+		this.amount = amount;
+		this.setReimbSubmitted(reimbSubmitted);
+		this.reimbursementStatus = reimbStatus;
+		this.reimbursementType = reimbType;
+		this.userId = ersReimbAuthor;		
+	}
 	public int getUserId() {
 		return userId;
 	}

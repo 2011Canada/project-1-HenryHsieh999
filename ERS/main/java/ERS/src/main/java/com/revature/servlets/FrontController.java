@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.revature.controllers.AddReimbursementRequestController;
 import com.revature.controllers.AuthController;
 import com.revature.controllers.ErrorController;
-import com.revature.controllers.ManagerController;
 
 public class FrontController extends HttpServlet {
 	
@@ -64,36 +63,6 @@ public class FrontController extends HttpServlet {
 				}
 				break;
 			}
-			case "/reimbursementRequest": {
-				switch (req.getMethod()) {
-					case "GET":{
-						res.setStatus(400);
-						res.getWriter().write("Method Not Supported");
-						break;
-					}
-					case "POST":{
-						arrc.addReimbursementRequest(req, res);
-						System.out.println("post is here");
-						break;
-					}
-					case "PUT":{
-						res.setStatus(400);
-						res.getWriter().write("Method Not Supported");
-						break;
-					}
-					case "DELETE":{
-						res.setStatus(400);
-						res.getWriter().write("Method Not Supported");
-						break;
-					}
-					default:{
-						res.setStatus(400);
-						res.getWriter().write("Method Not Supported");
-						break;
-					}
-				}
-				break;
-			}
 					
 			default:{
 				res.setStatus(404);
@@ -114,37 +83,14 @@ public class FrontController extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		directControl(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		directControl(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		directControl(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 	}
 
 }

@@ -40,13 +40,11 @@ public class AuthController {
 				System.out.println(UID);
 			}
 			Cookie ck = new Cookie("UID", UID.toString());
-//			RequestDispatcher rd = req.getRequestDispatcher("EmployeeWelcome");
-//            rd.forward(req, res);
-			
 			res.addCookie(ck);
 			System.out.println(ck);
 			res.setStatus(200);
 			res.getWriter().write(om.writeValueAsString(u));
+			
 		}else if(u.getTpe().equals("manager")){
 			System.out.println("manager");
 			Integer UID = u.getUserId();
@@ -61,7 +59,6 @@ public class AuthController {
 			System.out.println(ck);
 			res.setStatus(200);
 			res.getWriter().write(om.writeValueAsString(u));
-//			res.getWriter().write(om.writeValueAsString(UID));
 		}
 //		res.setStatus(200);
 //		res.getWriter().write(om.writeValueAsString(u));

@@ -8,30 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.revature.controllers.AddReimbursementRequestController;
 import com.revature.controllers.ErrorController;
+import com.revature.controllers.ManagerViewAllTicketsController;
 import com.revature.controllers.ViewAllPastTicketsController;
+import com.revature.models.ManagerViewAllTickets;
 
 
-public class EmployeeViewAllPastTicketsServlet extends HttpServlet {
+public class ManagerViewAllTicketsServlet extends HttpServlet {
+
+	private ManagerViewAllTicketsController mvatc = new ManagerViewAllTicketsController();
 	
-	private ViewAllPastTicketsController vaptc = new ViewAllPastTicketsController();
-			
-	protected void employeeControlRouter(HttpServletRequest req, HttpServletResponse res) throws JsonParseException, JsonMappingException, IOException {
+	protected void ManagerControlRouter(HttpServletRequest req, HttpServletResponse res) throws JsonParseException, JsonMappingException, IOException {
 		System.out.println(this.getInitParameter("DefaultRole"));
-		
 		String URI = req.getRequestURI().substring(req.getContextPath().length(), req.getRequestURI().length());
-		
 		System.out.println(URI);
 	}
-       
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		vaptc.viewAllPastTickets(request, response);
-		System.out.println("vaptc here");
+		mvatc.managerViewAllTickets(request, response);
+		System.out.println("mvatc here");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -3,7 +3,6 @@ package com.revature.repositories;
 import java.util.List;
 
 import com.revature.exceptions.UserNotFoundException;
-import com.revature.models.Account;
 import com.revature.models.User;
 
 public interface UserDAO {
@@ -34,5 +33,7 @@ public interface UserDAO {
 	public User addReimbursementRequest(int u, Double amount, String reimbursementType);
 	//view past Tickets
 	public List<User> viewPastTickets(int id);
+	//view all employee tickets
+	public List<User> managerViewAllTickets();
 	
 }

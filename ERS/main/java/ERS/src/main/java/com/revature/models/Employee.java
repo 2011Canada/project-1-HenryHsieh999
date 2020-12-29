@@ -8,4 +8,8 @@ public class Employee extends User{
 		super(ersReimbAuthor, reimbId, amount, reimbSubmitted, reimbResolved, reimbStatus, reimbType);
 	}
 
+	public Employee(int reimbId, double amount, Timestamp reimbSubmitted, String reimbStatus, String reimbType, int ersReimbAuthor) {
+		super(reimbId, amount, reimbSubmitted, reimbStatus, reimbType, ersReimbAuthor);
+	}
+
 }

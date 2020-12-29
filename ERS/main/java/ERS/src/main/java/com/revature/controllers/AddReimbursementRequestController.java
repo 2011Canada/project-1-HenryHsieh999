@@ -26,7 +26,6 @@ public class AddReimbursementRequestController {
 		User u = esi.addReimbursementRequest(arr.getUserId(), arr.getAmount(), arr.getReimbursemntType());
 //		System.out.println(u.getUserId());
 		
-		
 		res.setStatus(200);
 		res.getWriter().write(om.writeValueAsString(u));	
 	}

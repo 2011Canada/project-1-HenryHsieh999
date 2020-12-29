@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.TimeZone;
 
 import com.revature.exceptions.UserNotFoundException;
-import com.revature.models.Account;
 import com.revature.models.Employee;
 import com.revature.models.User;
 import com.revature.util.ConnectionFactory;
@@ -351,6 +350,26 @@ public class UserPostgresDAO implements UserDAO{
 			ResultSet res = viewPastTickets.executeQuery();
 			while(res.next()) {
 				Employee e = new Employee(res.getInt("ers_reimb_author"), res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getTimestamp("reimb_submitted"), res.getTimestamp("reimb_resolved"), res.getString("reimb_status"), res.getString("reimb_type"));
+				u.add(e);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cf.releaseConnection(conn);
+		}
+		return u;
+	}
+
+	@Override
+	public List<User> managerViewAllTickets() {
+		Connection conn = cf.getConnection();
+		List<User> u = new ArrayList<User>();
+		try {
+			String sql = "select * from ers_reimbursement;";
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery(sql);
+			while(res.next()) {
+				Employee e = new Employee(res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getTimestamp("reimb_submitted"), res.getString("reimb_status"), res.getString("reimb_type"), res.getInt("ers_reimb_author"));
 				u.add(e);
 			}
 		}catch(SQLException e) {

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ViewAllPastTickets {
 	private int userId;
-	private List<String> allTickets;
+	private List<String> allPastTickets;
 	
 	public int getUserId() {
 		return userId;
@@ -13,14 +13,14 @@ public class ViewAllPastTickets {
 		this.userId = userId;
 	}
 	public List<String> getAllTickets() {
-		return allTickets;
+		return allPastTickets;
 	}
 	public void setAllTickets(List<String> allTickets) {
-		this.allTickets = allTickets;
+		this.allPastTickets = allTickets;
 	}
 	@Override
 	public String toString() {
-		return "ViewAllPastTickets [userId=" + userId + ", allTickets=" + allTickets + "]";
+		return "ViewAllPastTickets [userId=" + userId + ", allPastTickets=" + allPastTickets + "]";
 	}
 	
 }
