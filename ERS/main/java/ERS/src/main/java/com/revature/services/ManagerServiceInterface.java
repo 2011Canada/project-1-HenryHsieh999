@@ -9,4 +9,5 @@ public interface ManagerServiceInterface {
 	public List<User> managerViewAllTickets();
 	public User approveReimbursement(int reimbId);
 	public User rejectReimbursement(int reimbId);
+	public List<User> filterReimbursementStatus(String reimbStatus);
 }

@@ -32,5 +32,6 @@ public class UserDAODebugger {
 //		System.out.println(ud.managerViewAllTickets());
 //		System.out.println(ud.approveReimbursement(1));
 //		System.out.println(ud.rejectReimbursement(1));
+//		System.out.println(ud.filterRequestByStatus("pending"));
 	}
 }

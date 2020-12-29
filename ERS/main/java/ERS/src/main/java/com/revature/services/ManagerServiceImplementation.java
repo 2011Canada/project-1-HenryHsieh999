@@ -26,4 +26,8 @@ public class ManagerServiceImplementation implements ManagerServiceInterface{
 		return ud.rejectReimbursement(reimbId);
 	}
 
+	public List<User> filterReimbursementStatus(String reimbStatus) {
+		return ud.filterRequestByStatus(reimbStatus);
+	}
+
 }

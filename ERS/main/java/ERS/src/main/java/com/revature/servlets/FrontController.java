@@ -26,8 +26,7 @@ public class FrontController extends HttpServlet {
 //		System.out.println(sc.getInitParameter("JavaCoolFactor"));
 //		
 		//be our front controller
-		String URI = req.getRequestURI().substring(req.getContextPath().length(), 
-													req.getRequestURI().length());
+		String URI = req.getRequestURI().substring(req.getContextPath().length(), req.getRequestURI().length());
 		
 		System.out.println(URI);
 		switch (URI) {
@@ -83,13 +82,11 @@ public class FrontController extends HttpServlet {
 		}
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		directControl(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		directControl(request, response);
 	}
 

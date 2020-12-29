@@ -37,4 +37,5 @@ public interface UserDAO {
 	public List<User> managerViewAllTickets();
 	public User approveReimbursement(int reimbId);
 	public User rejectReimbursement(int reimbId);
+	public List<User> filterRequestByStatus(String reqStatus);
 }

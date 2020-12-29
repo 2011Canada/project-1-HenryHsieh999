@@ -412,4 +412,24 @@ public class UserPostgresDAO implements UserDAO{
 		return null;
 	}
 
+	public List<User> filterRequestByStatus(String reqStatus) {
+		Connection conn = cf.getConnection();
+		List<User> u = new ArrayList<User>();
+		try {
+			String sql = "select * from ers_reimbursement where reimb_status = ?;";
+			PreparedStatement filterRequestByStatus = conn.prepareStatement(sql);
+			filterRequestByStatus.setString(1, reqStatus);
+			ResultSet res = filterRequestByStatus.executeQuery();
+			while(res.next()) {
+				Employee e = new Employee(res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getTimestamp("reimb_submitted"), res.getString("reimb_status"), res.getString("reimb_type"), res.getInt("ers_reimb_author"));
+				u.add(e);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cf.releaseConnection(conn);
+		}
+		return u;
+	}
+
 }
