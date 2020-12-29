@@ -15,17 +15,12 @@
     <h1 class="page_title">Reimbursement Request</h1>
     <div class="select_menu">
         <div class="col text-center">
-            <form id="reimbursement-submit-form">
-                <select class="reimbursement-type" id="reimbursementChoice">
-                    <option value="1" text="center">Lodging</option>
-                    <option value="2">Travel</option>
-                    <option value="3">Food</option>
-                    <option value="4">Other</option>
-                </select>
+            <form action="?q=saveAmount" id="reimbursement-submit-form">
+                <input type="text" id="reimbursement-input" class="form-control" placeholder="Type of Reimbursement" style="width: 300px; margin: auto;"/>
                 <br><br>
-                <input class="form-control" id="amount-input" type="number" min="0" step=".01" placeholder="Amount Input" style="width: 300px; margin: auto;">
+                <input type="number" id="amount-input" class="form-control" min="0" step=".01" placeholder="Amount Input" style="width: 300px; margin: auto;">
                 <br><br>
-                <button type="submit" id="submit-button" class="btn btn-danger btn-md">Submit</button>
+                <button type="submit" id="submit-button" value="submit" class="btn btn-danger btn-md">Submit</button>
                 </div>
             </form>
     </div>
@@ -44,7 +39,7 @@
         <div class="px-5">
             <h2 class="menu_title">Options</h2>
             <ul class="list_load">
-                <li class="list_item" id="add-reimbursement-request"><a href="./employeeMain.html">Employee Main Menu</a></li>
+                <li class="list_item" id="employeeMain"><a href="./employeeMain.html">Employee Main Menu</a></li>
                 <li class="list_item" id="view-past-tickets"><a href="./viewPastTickets.html">View Past Tickets</a></li>
                 <li class="list_item" id="view-profile"><a href="./profile.html">View Profile</a></li>
                 <li class="list_item" id="logout"><a href="./login.html">Logout</a></li>

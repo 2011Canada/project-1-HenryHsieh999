@@ -13,6 +13,7 @@ async function loginSubmit(e){
     try{
         let res = await fetch("http://localhost:8080/ERS/login",{
             method:"POST",
+            redirect: "follow",
             body: JSON.stringify(credentials),
             headers:{
                 "Content-Type" : "application/json"
@@ -20,10 +21,13 @@ async function loginSubmit(e){
         })
         let user = await res.json()
         console.log(user);
-        console.log(user.tpe)
+        console.log(user.tpe);
         if(user.tpe === "employee"){
+            sessionStorage.setItem('userId', user.userId);
+            console.log(`this is sessionStorage: ${sessionStorage.getItem('userId')}`);
             window.location = "./employeeMain.html"
         }else if(user.tpe === "manager"){
+            sessionStorage.setItem('userId', user.userId);
             window.location = "./managerMain.html"
         }
     } catch(e) {

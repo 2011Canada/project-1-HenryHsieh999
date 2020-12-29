@@ -1,3 +1,41 @@
+async function reimbursementSubmit(e){
+    e.preventDefault();
+
+    let reimbursementChoice = document.getElementById("reimbursement-input").value
+    console.log(reimbursementChoice)
+    let amount = document.getElementById("amount-input").value
+    console.log(amount)
+    //enhanced object literals
+    const addReimbursementRequest = {
+        reimbursementChoice,
+        amount        
+    }
+
+    try{
+        let res = await fetch("http://localhost:8080/ERS/reimbursementRequest",{
+            method:"POST",
+            body: JSON.stringify(addReimbursementRequest),
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+        // .then((response) => response.json())
+        // .then((addReimbursementRequest) => {
+        //     console.log('Success:', data);
+        // })
+        let user = await res.json()
+        console.log(user);
+        
+        // let reimbursementAmount = await res.json()
+        // console.log(reimbursementAmount);
+        
+    } catch(error) {
+        console.log('Error',error);
+    }
+}
+
+document.getElementsByTagName("form")[0].addEventListener('submit', reimbursementSubmit)
+
 $(document).ready(function(){
     // Requires jQuery
 
@@ -34,41 +72,12 @@ $(document).on('click','.js-menu_toggle.opened',function(e){
 	});
 	$('.list_load').slideUp(300);
 });    
-
-
-async function reimbursementSubmit(e){
-    e.preventDefault();
-
-    let reimbursementChoice = document.getElementById("reimbursement-type").value
-    console.log(reimbursementChoice)
-    let amount = document.getElementById("amount-input").value
-    console.log(amount)
-    //enhanced object literals
-    const addReimbursementRequest = {
-        reimbursementChoice,
-        amount
-    }
-
-    try{
-        let res = await fetch("http://localhost:8080/ERS/addReimbursement",{
-            method:"POST",
-            body: JSON.stringify(addReimbursementRequest),
-            headers:{
-                "Content-Type" : "application/json"
-            }
-        })
-        let reimbursementAmount = await res.json()
-        console.log(reimbursementAmount);
-        
-    } catch(e) {
-        console.log(e);
-    }
-}
-
-document.getElementsByTagName("form")[0].addEventListener('submit', reimbursementSubmit)
-
-
-
-
-
 });
+
+
+
+
+
+
+
+
