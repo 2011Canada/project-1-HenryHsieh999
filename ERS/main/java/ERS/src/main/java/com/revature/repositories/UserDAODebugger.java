@@ -29,6 +29,8 @@ public class UserDAODebugger {
 //		System.out.println(ud.deleteMoneyTransfer(2));
 //		System.out.println(ud.addReimbursementRequest(u));
 //		System.out.println(ud.viewPastTickets(1));
-		System.out.println(ud.managerViewAllTickets());
+//		System.out.println(ud.managerViewAllTickets());
+//		System.out.println(ud.approveReimbursement(1));
+//		System.out.println(ud.rejectReimbursement(1));
 	}
 }

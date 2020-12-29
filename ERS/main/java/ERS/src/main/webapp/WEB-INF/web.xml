@@ -38,7 +38,6 @@
     <servlet-name>EmployeeViewAllPastTicketsServlet</servlet-name>
     <url-pattern>/EmployeeViewAllPastTicketsServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ViewAllPastTicketsController</display-name>
@@ -49,8 +48,7 @@
     <servlet-name>ViewAllPastTicketsController</servlet-name>
     <url-pattern>/ViewAllPastTicketsController</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>ManagerViewAllTicketsController</display-name>
     <servlet-name>ManagerViewAllTicketsController</servlet-name>
@@ -60,7 +58,6 @@
     <servlet-name>ManagerViewAllTicketsController</servlet-name>
     <url-pattern>/ManagerViewAllTicketsController</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ManagerViewAllTicketsServlet</display-name>
@@ -71,23 +68,50 @@
     <servlet-name>ManagerViewAllTicketsServlet</servlet-name>
     <url-pattern>/ManagerViewAllTicketsServlet</url-pattern>
   </servlet-mapping>
-  
-  
-<filter>
-     <filter-name>CORS</filter-name>
-     <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
-     <init-param>
-         <param-name>cors.allowed.origins</param-name>
-         <param-value>*</param-value>
-     </init-param>
-     <init-param>
-         <param-name>cors.allowed.methods</param-name>
-         <param-value>GET, POST, HEAD, OPTIONS, PUT, DELETE</param-value>
-     </init-param>
- </filter>
-
-<filter-mapping>
-     <filter-name>CORS</filter-name>
-     <url-pattern>/*</url-pattern>
- </filter-mapping>
+  <filter>
+    <filter-name>CORS</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    <init-param>
+      <param-name>cors.allowed.origins</param-name>
+      <param-value>*</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.allowed.methods</param-name>
+      <param-value>GET, POST, HEAD, OPTIONS, PUT, DELETE</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CORS</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerARReimbursement</display-name>
+    <servlet-name>ManagerARReimbursement</servlet-name>
+    <servlet-class>com.revature.servlets.ManagerARReimbursement</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerARReimbursement</servlet-name>
+    <url-pattern>/ManagerARReimbursement</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerApproveReimbursementController</display-name>
+    <servlet-name>ManagerApproveReimbursementController</servlet-name>
+    <servlet-class>com.revature.controllers.ManagerApproveReimbursementController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerApproveReimbursementController</servlet-name>
+    <url-pattern>/ManagerApproveReimbursementController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerRejectReimbursementController</display-name>
+    <servlet-name>ManagerRejectReimbursementController</servlet-name>
+    <servlet-class>com.revature.controllers.ManagerRejectReimbursementController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerRejectReimbursementController</servlet-name>
+    <url-pattern>/ManagerRejectReimbursementController</url-pattern>
+  </servlet-mapping>
 </web-app>

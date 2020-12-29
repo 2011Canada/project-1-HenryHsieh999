@@ -35,5 +35,6 @@ public interface UserDAO {
 	public List<User> viewPastTickets(int id);
 	//view all employee tickets
 	public List<User> managerViewAllTickets();
-	
+	public User approveReimbursement(int reimbId);
+	public User rejectReimbursement(int reimbId);
 }

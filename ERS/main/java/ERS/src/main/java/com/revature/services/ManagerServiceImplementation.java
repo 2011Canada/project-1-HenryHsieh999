@@ -18,4 +18,12 @@ public class ManagerServiceImplementation implements ManagerServiceInterface{
 		return ud.managerViewAllTickets();
 	}
 
+	public User approveReimbursement(int reimbId) {
+		return ud.approveReimbursement(reimbId);
+	}
+
+	public User rejectReimbursement(int reimbId) {
+		return ud.rejectReimbursement(reimbId);
+	}
+
 }

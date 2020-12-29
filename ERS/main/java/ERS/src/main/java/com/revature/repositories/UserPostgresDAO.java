@@ -380,4 +380,36 @@ public class UserPostgresDAO implements UserDAO{
 		return u;
 	}
 
+	public User approveReimbursement(int reimbId) {
+		Connection conn = cf.getConnection();
+		try {
+			String sql = "update ers_reimbursement set reimb_status = 'approved' where reimb_id = ?;";
+			PreparedStatement approveReimbursement = conn.prepareStatement(sql);
+			approveReimbursement.setInt(1, reimbId);
+			approveReimbursement.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cf.releaseConnection(conn);
+		}
+		return null;
+	}
+
+	public User rejectReimbursement(int reimbId) {
+		Connection conn = cf.getConnection();
+		try {
+			String sql = "update ers_reimbursement set reimb_status = 'rejected' where reimb_id = ?;";
+			PreparedStatement approveReimbursement = conn.prepareStatement(sql);
+			approveReimbursement.setInt(1, reimbId);
+			approveReimbursement.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cf.releaseConnection(conn);
+		}
+		return null;
+	}
+
 }
