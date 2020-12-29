@@ -48,10 +48,12 @@ insert into ers_users (ers_username, ers_password,user_first_name,user_last_name
 select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk;
 select * from ers_users eu left join ers_reimbursement er on eu.ers_users_id = er.ers_reimb_author;
 select * from ers_reimbursement where ers_reimb_author = 1;
+
 --login query
 select * from ers_users where ers_username = 'mtv' and ers_password = 'cat5';
 select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_username = 'mtv' and ers_password = 'cat5';
 select * from ers_users where ers_username = 'ender';
+select * from ers_reimbursement where reimb_status = 'pending';
 --find User ID by ers_user_role_id
 select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_user_role_id = 2;
 --find User ID by ers_username
@@ -59,9 +61,17 @@ select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id 
 --reimbursement query
 insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (500.15, CURRENT_TIMESTAMP, 'pending', 'lodging', 1);
 insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (1241.15, CURRENT_TIMESTAMP, 'pending', 'lodging', 1);
---select * from ers_reimbursement er 
-
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (4570.15, CURRENT_TIMESTAMP, 'pending', 'lodging', 3);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (786.22, CURRENT_TIMESTAMP, 'pending', 'travel', 1);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (946.45, CURRENT_TIMESTAMP, 'pending', 'lodging', 2);
+--approve/reject reimbursement
+update ers_reimbursement set reimb_status = 'approved' where reimb_id = 1;
+update ers_reimbursement set reimb_status = 'rejected' where reimb_id = 1;
+update ers_reimbursement set reimb_status = 'pending' where reimb_id = 1;
 --simple select statements to check tables 
 select * from ers_reimbursement;
 select * from ers_user_roles;
 select * from ers_users;
+
+
+
