@@ -54,4 +54,34 @@
     <servlet-name>ManagerUpdateReimbursementServlet</servlet-name>
     <url-pattern>/manager/updateReimbursementRequestStatus/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerViewAllPendingServlet</display-name>
+    <servlet-name>ManagerViewAllPendingServlet</servlet-name>
+    <servlet-class>com.revature.servlets.ManagerViewAllPendingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerViewAllPendingServlet</servlet-name>
+    <url-pattern>/manager/filterRequestStatus/pending</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerViewAllApprovedServlet</display-name>
+    <servlet-name>ManagerViewAllApprovedServlet</servlet-name>
+    <servlet-class>com.revature.servlets.ManagerViewAllApprovedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerViewAllApprovedServlet</servlet-name>
+    <url-pattern>/manager/filterRequestStatus/approved</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerViewAllDeniedServlet</display-name>
+    <servlet-name>ManagerViewAllDeniedServlet</servlet-name>
+    <servlet-class>com.revature.servlets.ManagerViewAllDeniedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerViewAllDeniedServlet</servlet-name>
+    <url-pattern>/manager/filterRequestStatus/denied</url-pattern>
+  </servlet-mapping>
 </web-app>

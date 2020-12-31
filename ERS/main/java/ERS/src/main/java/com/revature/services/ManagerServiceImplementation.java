@@ -17,13 +17,23 @@ public class ManagerServiceImplementation implements ManagerServiceInterface{
 	}
 
 	@Override
-	public List<Reimbursement> filterReimbursementStatus(String reimbStatus) throws SQLException {
-		return rDAO.getAllReimbursementsByStatus(reimbStatus);
+	public Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException {
+		return rDAO.updateReimbursementStatus(reimbId, reimbStatus);
 	}
 
 	@Override
-	public Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException {
-		return rDAO.updateReimbursementStatus(reimbId, reimbStatus);
+	public List<Reimbursement> viewPending() throws SQLException {
+		return rDAO.getAllPendingReimbursements();
+	}
+
+	@Override
+	public List<Reimbursement> viewApproved() throws SQLException {
+		return rDAO.getAllApprovedReimbursements();
+	}
+
+	@Override
+	public List<Reimbursement> viewDenied() throws SQLException {
+		return rDAO.getAllDeniedReimbursements();
 	}
 
 }

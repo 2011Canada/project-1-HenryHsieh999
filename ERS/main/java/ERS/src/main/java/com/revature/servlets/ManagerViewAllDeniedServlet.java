@@ -2,6 +2,8 @@ package com.revature.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,33 +13,33 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Reimbursement;
-import com.revature.models.User;
 import com.revature.services.ManagerServiceImplementation;
 
-public class ManagerUpdateReimbursementServlet extends HttpServlet {
-	
+/**
+ * Servlet implementation class ManagerViewAllDeniedServlet
+ */
+public class ManagerViewAllDeniedServlet extends HttpServlet {
 	private ManagerServiceImplementation msi = new ManagerServiceImplementation();
-	
 	private ObjectMapper om = new ObjectMapper();
-
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		System.out.println("Session:");
 		HttpSession sess = req.getSession(false);		
+		System.out.println(sess);
 		
-		User u = (User)sess.getAttribute("user");
-		Reimbursement r = null;
-		System.out.println("Post is here:");
+		List<Reimbursement> allDeniedTickets = null;
+		System.out.println("get is here");
 		try {
-			r = om.readValue(req.getInputStream(), Reimbursement.class);
-			r.setAuthorID(u.getUserId());
-			System.out.println(r);
-			r = msi.updateReimbursementStatus(r.getId(), r.getReimbursementStatus());
+			allDeniedTickets = msi.viewDenied();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		res.setStatus(200);
-		res.getWriter().write(om.writeValueAsString(r));
+		if(null == allDeniedTickets) {
+			allDeniedTickets = new ArrayList<>();
+		}
+		res.getWriter().write(om.writeValueAsString(allDeniedTickets));
 	}
-
 
 }

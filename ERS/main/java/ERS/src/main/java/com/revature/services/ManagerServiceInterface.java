@@ -7,6 +7,8 @@ import com.revature.models.Reimbursement;
 
 public interface ManagerServiceInterface {
 	public List<Reimbursement> viewAllTickets() throws SQLException;
-	public List<Reimbursement> filterReimbursementStatus(String reimbStatus) throws SQLException;
+	public List<Reimbursement> viewPending() throws SQLException;
+	public List<Reimbursement> viewApproved() throws SQLException;
+	public List<Reimbursement> viewDenied() throws SQLException;
 	public Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException;
 }

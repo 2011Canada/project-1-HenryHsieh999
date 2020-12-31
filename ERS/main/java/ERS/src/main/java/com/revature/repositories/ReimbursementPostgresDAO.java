@@ -36,27 +36,6 @@ public class ReimbursementPostgresDAO implements ReimbursementDAO{
 	}
 
 	@Override
-	public List<Reimbursement> getAllReimbursementsByStatus(String status) throws SQLException {
-		Connection conn = cf.getConnection();
-		List<Reimbursement> reimbursementList = new ArrayList<>();
-		try {
-			String sql = "select * from ers_reimbursement where reimb_status = ?;";
-			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, status);
-			ResultSet res = statement.executeQuery();
-	
-			while (res.next()) {
-				reimbursementList.add(new Reimbursement(res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getString("reimb_submitted"), res.getString("reimb_resolved"), res.getString("reimb_status"), res.getString("reimb_type"), res.getInt("ers_reim_author")));
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			cf.releaseConnection(conn);
-		}
-		return reimbursementList;
-	}
-
-	@Override
 	public List<Reimbursement> getAllReimbursementsByUser(User user) throws SQLException {
 		Connection conn = cf.getConnection();
 		List<Reimbursement> reimbursementList = new ArrayList<>();
@@ -98,7 +77,6 @@ public class ReimbursementPostgresDAO implements ReimbursementDAO{
 		return null;
 	}
 	
-
 	@Override
 	public Reimbursement addReimbursement(Reimbursement reimbursement) throws SQLException {
 		Connection conn = cf.getConnection();
@@ -133,9 +111,68 @@ public class ReimbursementPostgresDAO implements ReimbursementDAO{
 			statement.setInt(1, reimID);
 			ResultSet res = statement.executeQuery();
 			
-			Reimbursement reimbursement = new Reimbursement(res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getString("reimb_submitted"), res.getString("reimb_resolved"), res.getString("reimb_status"), res.getString("reimb_type"), res.getInt("ers_reim_author"));
+			Reimbursement reimbursement = new Reimbursement(res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getString("reimb_submitted"), res.getString("reimb_resolved"), res.getString("reimb_status"), res.getString("reimb_type"), res.getInt("ers_reimb_author"));
 		
 		return reimbursement;
+	}
+
+	@Override
+	public List<Reimbursement> getAllPendingReimbursements() throws SQLException {
+		Connection conn = cf.getConnection();
+		List<Reimbursement> reimbursementList = new ArrayList<>();
+		try {
+			String sql = "select * from ers_reimbursement where reimb_status = 'pending';";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			ResultSet res = statement.executeQuery();
+	
+			while (res.next()) {
+				reimbursementList.add(new Reimbursement(res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getString("reimb_submitted"), res.getString("reimb_resolved"), res.getString("reimb_status"), res.getString("reimb_type"), res.getInt("ers_reimb_author")));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cf.releaseConnection(conn);
+		}
+		return reimbursementList;
+	}
+
+	@Override
+	public List<Reimbursement> getAllApprovedReimbursements() throws SQLException {
+		Connection conn = cf.getConnection();
+		List<Reimbursement> reimbursementList = new ArrayList<>();
+		try {
+			String sql = "select * from ers_reimbursement where reimb_status = 'approved';";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			ResultSet res = statement.executeQuery();
+			while (res.next()) {
+				reimbursementList.add(new Reimbursement(res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getString("reimb_submitted"), res.getString("reimb_resolved"), res.getString("reimb_status"), res.getString("reimb_type"), res.getInt("ers_reimb_author")));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cf.releaseConnection(conn);
+		}
+		return reimbursementList;
+	}
+
+	@Override
+	public List<Reimbursement> getAllDeniedReimbursements() throws SQLException {
+		Connection conn = cf.getConnection();
+		List<Reimbursement> reimbursementList = new ArrayList<>();
+		try {
+			String sql = "select * from ers_reimbursement where reimb_status = 'denied';";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			ResultSet res = statement.executeQuery();
+	
+			while (res.next()) {
+				reimbursementList.add(new Reimbursement(res.getInt("reimb_id"), res.getDouble("reimb_amount"), res.getString("reimb_submitted"), res.getString("reimb_resolved"), res.getString("reimb_status"), res.getString("reimb_type"), res.getInt("ers_reimb_author")));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cf.releaseConnection(conn);
+		}
+		return reimbursementList;
 	}
 
 }

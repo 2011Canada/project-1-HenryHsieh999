@@ -40,7 +40,7 @@
 
 <script>
 	async function viewAllTickets(e){
-		
+	
 		try{
 			let res = await fetch("http://localhost:8080/ERS/manager/viewAllReimbursementRequest/req",{
 				method:"GET",
@@ -111,6 +111,7 @@
 		<ul class="list_load">
 			<li class="list_item" id="view-all-reimbursements"><a href="./managerMain.html">Manager Main Menu</a></li>
 			<li class="list_item" id="add-reimbursement-request"><a href="./updateReimbursementRequestStatus.html">Update Reimbursement Status</a></li>
+            <li class="list_item" id="filter-request"><a href="./filterRequestStatus.html">Filter Requests By Status</a></li>
 			<li class="list_item" id="logout"><a href="../login.html">Logout</a></li>
 		</ul>
 	</div>

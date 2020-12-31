@@ -2,8 +2,6 @@ package com.revature.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Reimbursement;
 import com.revature.models.User;
-import com.revature.repositories.UserPostgresDAO;
 import com.revature.services.EmployeeServiceImplementation;
 
 public class EmployeeReimbursementServlet extends HttpServlet {
