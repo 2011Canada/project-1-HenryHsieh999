@@ -18,8 +18,23 @@ public class EmployeeServiceImplementation implements EmployeeServiceInterface{
 	}
 
 	@Override
-	public Reimbursement addReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException {
-		return rDAO.addReimbursement(reimbursement);
+	public Reimbursement addFoodReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException {
+		return rDAO.addFoodReimbursement(reimbursement);
+	}
+
+	@Override
+	public Reimbursement addTravelReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException {
+		return rDAO.addTravelReimbursement(reimbursement);
+	}
+
+	@Override
+	public Reimbursement addLodgingReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException {
+		return rDAO.addLodgingReimbursement(reimbursement);
+	}
+
+	@Override
+	public Reimbursement addOtherReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException {
+		return rDAO.addOtherReimbursement(reimbursement);
 	}
 	
 

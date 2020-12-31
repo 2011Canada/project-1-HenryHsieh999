@@ -16,11 +16,13 @@
     <div class="select_menu">
         <div class="col text-center">
             <form id="reimbursement-submit-form">
-                <input type="text" id="reimbursement-input" class="form-control" placeholder="Type of Reimbursement" style="width: 300px; margin: auto;"/>
                 <br><br>
                 <input type="number" id="amount-input" class="form-control" min="0" step=".01" placeholder="Amount Input" style="width: 300px; margin: auto;">
                 <br><br>
-                <button type="submit" id="submit-button" value="submit" class="btn btn-danger btn-md">Submit</button>
+                <button type="submit" onclick="travelReimbursementStatus()" id="travel-button" class="btn btn-info btn-md">Travel</button>
+                <button type="submit" onclick="lodgingReimbursementStatus()" id="lodging-button" class="btn btn-info btn-md">Lodging</button>
+                <button type="submit" onclick="foodReimbursementStatus()" id="food-button" class="btn btn-info btn-md">Food</button>
+                <button type="submit" onclick="otherReimbursementStatus()" id="other-button" class="btn btn-info btn-md">Other</button>
                 </div>
             </form>
     </div>

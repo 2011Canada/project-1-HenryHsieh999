@@ -8,7 +8,11 @@ import com.revature.models.User;
 
 public interface ReimbursementDAO {
 	//employee
-	Reimbursement addReimbursement(Reimbursement reimbursement) throws SQLException;
+
+	Reimbursement addTravelReimbursement(Reimbursement reimbursement) throws SQLException;
+	Reimbursement addLodgingReimbursement(Reimbursement reimbursement) throws SQLException;
+	Reimbursement addFoodReimbursement(Reimbursement reimbursement) throws SQLException;
+	Reimbursement addOtherReimbursement(Reimbursement reimbursement) throws SQLException;
 	List<Reimbursement> getAllReimbursementsByUser(User user) throws SQLException;
 	
 	//manager

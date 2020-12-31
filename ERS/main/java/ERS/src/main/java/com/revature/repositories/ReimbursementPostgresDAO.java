@@ -15,7 +15,106 @@ import com.revature.util.ConnectionFactory;
 public class ReimbursementPostgresDAO implements ReimbursementDAO{
 	
 	private static ConnectionFactory cf = ConnectionFactory.getConnectionFactory();
+	
+	@Override
+	public Reimbursement addTravelReimbursement(Reimbursement reimbursement) throws SQLException {
+		Connection conn = cf.getConnection();
+		try {
+			String sql = "insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (?, ?, ?, ?, ?) returning reimb_id;";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			final java.util.Date today = new java.util.Date();
+			final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
+			statement.setDouble(1, reimbursement.getAmount());
+			statement.setTimestamp(2, todaySQL);
+			statement.setString(3, "pending");
+			statement.setString(4, "Travel");
+			statement.setInt(5, reimbursement.getAuthorID());
+			
+			ResultSet res = statement.executeQuery();
+			res.next();
+			reimbursement.setId(res.getInt("reimb_id"));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cf.releaseConnection(conn);
+		}
+		return reimbursement;
+	}
 
+	@Override
+	public Reimbursement addLodgingReimbursement(Reimbursement reimbursement) throws SQLException {
+		Connection conn = cf.getConnection();
+		try {
+			String sql = "insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (?, ?, ?, ?, ?) returning reimb_id;";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			final java.util.Date today = new java.util.Date();
+			final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
+			statement.setDouble(1, reimbursement.getAmount());
+			statement.setTimestamp(2, todaySQL);
+			statement.setString(3, "pending");
+			statement.setString(4, "Lodging");
+			statement.setInt(5, reimbursement.getAuthorID());
+			
+			ResultSet res = statement.executeQuery();
+			res.next();
+			reimbursement.setId(res.getInt("reimb_id"));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cf.releaseConnection(conn);
+		}
+		return reimbursement;
+	}
+
+	@Override
+	public Reimbursement addFoodReimbursement(Reimbursement reimbursement) throws SQLException {
+		Connection conn = cf.getConnection();
+		try {
+			String sql = "insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (?, ?, ?, ?, ?) returning reimb_id;";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			final java.util.Date today = new java.util.Date();
+			final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
+			statement.setDouble(1, reimbursement.getAmount());
+			statement.setTimestamp(2, todaySQL);
+			statement.setString(3, "pending");
+			statement.setString(4, "Food");
+			statement.setInt(5, reimbursement.getAuthorID());
+			
+			ResultSet res = statement.executeQuery();
+			res.next();
+			reimbursement.setId(res.getInt("reimb_id"));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cf.releaseConnection(conn);
+		}
+		return reimbursement;
+	}
+
+	@Override
+	public Reimbursement addOtherReimbursement(Reimbursement reimbursement) throws SQLException {
+		Connection conn = cf.getConnection();
+		try {
+			String sql = "insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (?, ?, ?, ?, ?) returning reimb_id;";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			final java.util.Date today = new java.util.Date();
+			final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
+			statement.setDouble(1, reimbursement.getAmount());
+			statement.setTimestamp(2, todaySQL);
+			statement.setString(3, "pending");
+			statement.setString(4, "Other");
+			statement.setInt(5, reimbursement.getAuthorID());
+			
+			ResultSet res = statement.executeQuery();
+			res.next();
+			reimbursement.setId(res.getInt("reimb_id"));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cf.releaseConnection(conn);
+		}
+		return reimbursement;
+	}
 	public List<Reimbursement> getAllReimbursements() throws SQLException {
 		Connection conn = cf.getConnection();
 		List<Reimbursement> reimbursementList = new ArrayList<>();
@@ -95,30 +194,7 @@ public class ReimbursementPostgresDAO implements ReimbursementDAO{
 		return null;
 	}
 	
-	@Override
-	public Reimbursement addReimbursement(Reimbursement reimbursement) throws SQLException {
-		Connection conn = cf.getConnection();
-		try {
-			String sql = "insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (?, ?, ?, ?, ?) returning reimb_id;";
-			PreparedStatement statement = conn.prepareStatement(sql);
-			final java.util.Date today = new java.util.Date();
-			final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
-			statement.setDouble(1, reimbursement.getAmount());
-			statement.setTimestamp(2, todaySQL);
-			statement.setString(3, "pending");
-			statement.setString(4, reimbursement.getReimbursementType());
-			statement.setInt(5, reimbursement.getAuthorID());
-			
-			ResultSet res = statement.executeQuery();
-			res.next();
-			reimbursement.setId(res.getInt("reimb_id"));
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			cf.releaseConnection(conn);
-		}
-		return reimbursement;
-	}
+	
 
 	@Override
 	public Reimbursement getAllReimbursementsByID(int reimID) throws SQLException {
@@ -192,5 +268,7 @@ public class ReimbursementPostgresDAO implements ReimbursementDAO{
 		}
 		return reimbursementList;
 	}
+
+	
 
 }

@@ -1,42 +1,118 @@
-async function reimbursementSubmit(e){
-    e.preventDefault();
+async function travelReimbursementStatus(e){
 
-    let reimbursementType = document.getElementById("reimbursement-input").value
-    console.log(reimbursementType)
     let amount = document.getElementById("amount-input").value
     console.log(amount)
-    let userId = sessionStorage.getItem('userId')
-    console.log(userId)
+
     //enhanced object literals
-    const addReimbursementRequest = {
-        reimbursementType,
+    const updateAmount = {
         amount        
     }
 
     try{
-        let res = await fetch("http://localhost:8080/ERS/employee/reimbursementRequest/submit",{
+        let res = await fetch("http://localhost:8080/ERS/employee/reimbursementRequest/travel",{
             method:"POST",
-            body: JSON.stringify(addReimbursementRequest),
+            body: JSON.stringify(updateAmount),
             headers:{
                 "Content-Type" : "application/json"
             }
         })
-        // .then((response) => response.json())
-        // .then((addReimbursementRequest) => {
-        //     console.log('Success:', data);
-        // })
-        let reimbursement = await res.json()
-        console.log(reimbursement);
-        
-        // let reimbursementAmount = await res.json()
-        // console.log(reimbursementAmount);
-        
+       
+        let updateAmountStatus = await res.json()
+        console.log(updateAmountStatus);
+               
     } catch(error) {
         console.log('Error',error);
     }
 }
 
-document.getElementsByTagName("form")[0].addEventListener('submit', reimbursementSubmit)
+
+async function lodgingReimbursementStatus(e){
+
+    let amount = document.getElementById("amount-input").value
+    console.log(amount)
+
+    //enhanced object literals
+    const updateAmount = {
+        amount        
+    }
+
+    try{
+        let res = await fetch("http://localhost:8080/ERS/employee/reimbursementRequest/lodging",{
+            method:"POST",
+            body: JSON.stringify(updateAmount),
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+       
+        let updateAmountStatus = await res.json()
+        console.log(updateAmountStatus);
+               
+    } catch(error) {
+        console.log('Error',error);
+    }
+}
+async function foodReimbursementStatus(e){
+
+    let amount = document.getElementById("amount-input").value
+    console.log(amount)
+
+    //enhanced object literals
+    const updateAmount = {
+        amount        
+    }
+
+    try{
+        let res = await fetch("http://localhost:8080/ERS/employee/reimbursementRequest/food",{
+            method:"POST",
+            body: JSON.stringify(updateAmount),
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+       
+        let updateAmountStatus = await res.json()
+        console.log(updateAmountStatus);
+               
+    } catch(error) {
+        console.log('Error',error);
+    }
+}
+async function otherReimbursementStatus(e){
+
+    let amount = document.getElementById("amount-input").value
+    console.log(amount)
+
+    //enhanced object literals
+    const updateAmount = {
+        amount        
+    }
+
+    try{
+        let res = await fetch("http://localhost:8080/ERS/employee/reimbursementRequest/other",{
+            method:"POST",
+            body: JSON.stringify(updateAmount),
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+       
+        let updateAmountStatus = await res.json()
+        console.log(updateAmountStatus);
+               
+    } catch(error) {
+        console.log('Error',error);
+    }
+}
+if(document.getElementById('travel-button').onclick === true){
+    document.getElementById("update-reimbursement-status").addEventListener('submit', travelReimbursement)
+} else if(document.getElementById('lodging-button').onclick === true){
+    document.getElementById("update-reimbursement-status").addEventListener('submit', lodgingReimbursement)
+} else if(document.getElementById('food-button').onclick === true){
+    document.getElementById("update-reimbursement-status").addEventListener('submit', foodReimbursement)
+} else if(document.getElementById('other-button').onclick === true){
+    document.getElementById("update-reimbursement-status").addEventListener('submit', otherReimbursement)
+}
 
 
 

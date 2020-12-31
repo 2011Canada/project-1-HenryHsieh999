@@ -16,16 +16,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EmployeeReimbursementServlet</display-name>
-    <servlet-name>EmployeeReimbursementServlet</servlet-name>
-    <servlet-class>com.revature.servlets.EmployeeReimbursementServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EmployeeReimbursementServlet</servlet-name>
-    <url-pattern>/employee/reimbursementRequest/*</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>EmployeePastTicketsServlet</display-name>
     <servlet-name>EmployeePastTicketsServlet</servlet-name>
     <servlet-class>com.revature.servlets.EmployeePastTicketsServlet</servlet-class>
@@ -33,6 +23,46 @@
   <servlet-mapping>
     <servlet-name>EmployeePastTicketsServlet</servlet-name>
     <url-pattern>/employee/viewPastTickets/*</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>EmployeeFoodReimbursementServlet</display-name>
+    <servlet-name>EmployeeFoodReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeFoodReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeFoodReimbursementServlet</servlet-name>
+    <url-pattern>/employee/reimbursementRequest/food</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeLodgingReimbursementServlet</display-name>
+    <servlet-name>EmployeeLodgingReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeLodgingReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeLodgingReimbursementServlet</servlet-name>
+    <url-pattern>/employee/reimbursementRequest/lodging</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeOtherReimbursementServlet</display-name>
+    <servlet-name>EmployeeOtherReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeOtherReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeOtherReimbursementServlet</servlet-name>
+    <url-pattern>/employee/reimbursementRequest/other</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmployeeTravelReimbursementServlet</display-name>
+    <servlet-name>EmployeeTravelReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeTravelReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeTravelReimbursementServlet</servlet-name>
+    <url-pattern>/employee/reimbursementRequest/travel</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -44,7 +74,6 @@
     <servlet-name>ManagerViewAllTicketsServlet</servlet-name>
     <url-pattern>/manager/viewAllReimbursementRequest/*</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ManagerViewAllPendingServlet</display-name>
@@ -95,4 +124,5 @@
     <servlet-name>ManagerDenyReimbursementServlet</servlet-name>
     <url-pattern>/manager/updateReimbursementRequestStatus/deny</url-pattern>
   </servlet-mapping>
+
 </web-app>

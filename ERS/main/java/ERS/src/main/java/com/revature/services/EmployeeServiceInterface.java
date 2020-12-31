@@ -10,5 +10,8 @@ public interface EmployeeServiceInterface {
 
 	List<Reimbursement> viewPastTickets(User user) throws SQLException;
 
-	Reimbursement addReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException;
+	Reimbursement addFoodReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException;
+	Reimbursement addTravelReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException;
+	Reimbursement addLodgingReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException;
+	Reimbursement addOtherReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException;
 }
