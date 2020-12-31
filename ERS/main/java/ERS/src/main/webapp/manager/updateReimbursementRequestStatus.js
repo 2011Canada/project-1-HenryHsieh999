@@ -1,40 +1,36 @@
-async function reimbursementSubmit(e){
+async function updateReimbursementStatus(e){
     e.preventDefault();
 
-    let reimbursementChoice = document.getElementById("reimbursement-input").value
-    console.log(reimbursementChoice)
-    let amount = document.getElementById("amount-input").value
-    console.log(amount)
+    let id = document.getElementById("reimbId-input").value
+    console.log(id)
+    let reimbursementStatus = document.getElementById("status-input").value
+    console.log(reimbursementStatus)
+
     //enhanced object literals
-    const addReimbursementRequest = {
-        reimbursementChoice,
-        amount        
+    const updateReimbStatus = {
+        id,
+        reimbursementStatus        
     }
 
     try{
-        let res = await fetch("http://localhost:8080/ERS/reimbursementRequest",{
+        let res = await fetch("http://localhost:8080/ERS/manager/updateReimbursementRequestStatus/submit",{
             method:"POST",
-            body: JSON.stringify(addReimbursementRequest),
+            body: JSON.stringify(updateReimbStatus),
             headers:{
                 "Content-Type" : "application/json"
             }
         })
-        // .then((response) => response.json())
-        // .then((addReimbursementRequest) => {
-        //     console.log('Success:', data);
-        // })
-        let user = await res.json()
-        console.log(user);
-        
-        // let reimbursementAmount = await res.json()
-        // console.log(reimbursementAmount);
-        
+       
+        let updateReimbursement = await res.json()
+        console.log(updateReimbursement);
+               
     } catch(error) {
         console.log('Error',error);
     }
 }
+document.getElementsByTagName("form")[0].addEventListener('submit', updateReimbursementStatus)
 
-document.getElementsByTagName("form")[0].addEventListener('submit', reimbursementSubmit)
+
 
 $(document).ready(function(){
     // Requires jQuery
@@ -73,11 +69,3 @@ $(document).on('click','.js-menu_toggle.opened',function(e){
 	$('.list_load').slideUp(300);
 });    
 });
-
-
-
-
-
-
-
-

@@ -1,33 +1,29 @@
 package com.revature.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import com.revature.models.User;
-import com.revature.repositories.UserDAO;
-import com.revature.repositories.UserPostgresDAO;
+import com.revature.models.Reimbursement;
+import com.revature.repositories.ReimbursementDAO;
+import com.revature.repositories.ReimbursementPostgresDAO;
 
 public class ManagerServiceImplementation implements ManagerServiceInterface{
-	
-	private UserDAO ud;
-	
-	public ManagerServiceImplementation(UserDAO ud) {
-		this.ud = ud;
-	}
-	
-	public List<User> managerViewAllTickets() {
-		return ud.managerViewAllTickets();
+
+	static private ReimbursementDAO rDAO = new ReimbursementPostgresDAO();
+
+	@Override
+	public List<Reimbursement> viewAllTickets() throws SQLException {
+		return rDAO.getAllReimbursements();
 	}
 
-	public User approveReimbursement(int reimbId) {
-		return ud.approveReimbursement(reimbId);
+	@Override
+	public List<Reimbursement> filterReimbursementStatus(String reimbStatus) throws SQLException {
+		return rDAO.getAllReimbursementsByStatus(reimbStatus);
 	}
 
-	public User rejectReimbursement(int reimbId) {
-		return ud.rejectReimbursement(reimbId);
-	}
-
-	public List<User> filterReimbursementStatus(String reimbStatus) {
-		return ud.filterRequestByStatus(reimbStatus);
+	@Override
+	public Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException {
+		return rDAO.updateReimbursementStatus(reimbId, reimbStatus);
 	}
 
 }

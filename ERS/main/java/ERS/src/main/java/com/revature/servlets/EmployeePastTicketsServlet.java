@@ -13,32 +13,33 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Reimbursement;
-import com.revature.services.ManagerServiceImplementation;
+import com.revature.models.User;
+import com.revature.services.EmployeeServiceImplementation;
 
-
-public class ManagerViewAllTicketsServlet extends HttpServlet {
+public class EmployeePastTicketsServlet extends HttpServlet {
+       
+	private EmployeeServiceImplementation esi = new EmployeeServiceImplementation();
 	
-	private ManagerServiceImplementation msi = new ManagerServiceImplementation();
 	private ObjectMapper om = new ObjectMapper();
 	
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	
+protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		System.out.println("Session:");
 		HttpSession sess = req.getSession(false);		
 		System.out.println(sess);
 		
-		List<Reimbursement> allTickets = null;
+		List<Reimbursement> allReimbursement = null;
 		System.out.println("get is here");
 		try {
-			allTickets = msi.viewAllTickets();
+			allReimbursement = esi.viewPastTickets((User)sess.getAttribute("user"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		res.setStatus(200);
-		if(null == allTickets) {
-			allTickets = new ArrayList<>();
+		if(null == allReimbursement) {
+			allReimbursement = new ArrayList<>();
 		}
-		res.getWriter().write(om.writeValueAsString(allTickets));
+		res.getWriter().write(om.writeValueAsString(allReimbursement));
 	}
-
 }

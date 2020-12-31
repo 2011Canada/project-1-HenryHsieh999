@@ -25,10 +25,10 @@ async function loginSubmit(e){
         if(user.tpe === "employee"){
             sessionStorage.setItem('userId', user.userId);
             console.log(`this is sessionStorage: ${sessionStorage.getItem('userId')}`);
-            window.location = "./employeeMain.html"
+            window.location = "./employee/employeeMain.html"
         }else if(user.tpe === "manager"){
             sessionStorage.setItem('userId', user.userId);
-            window.location = "./managerMain.html"
+            window.location = "./manager/managerMain.html"
         }
     } catch(e) {
         console.log(e);

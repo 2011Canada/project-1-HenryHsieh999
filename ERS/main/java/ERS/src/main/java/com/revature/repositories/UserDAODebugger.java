@@ -7,7 +7,7 @@ public class UserDAODebugger {
 	public static void main(String[] args) throws UserNotFoundException {
 		// TODO Auto-generated method stub
 		UserDAO ud = new UserPostgresDAO();
-		User u = new User(149.54, null, null, "travel", 1);
+//		User u = new User(149.54, null, null, "travel", 1);
 		
 //		System.out.println(ud.findUserByUsernameAndPassword("ender", "truelight9"));
 //		System.out.println(ud.findAllCustomer());

@@ -1,23 +1,26 @@
 package com.revature.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import com.revature.models.Reimbursement;
 import com.revature.models.User;
-import com.revature.repositories.UserDAO;
+import com.revature.repositories.ReimbursementDAO;
+import com.revature.repositories.ReimbursementPostgresDAO;
 
 public class EmployeeServiceImplementation implements EmployeeServiceInterface{
-	private UserDAO ud;
+
+	static private ReimbursementDAO rDAO = new ReimbursementPostgresDAO();
 	
-	public EmployeeServiceImplementation(UserDAO ud) {
-		this.ud = ud;
+	@Override
+	public List<Reimbursement> viewPastTickets(User user) throws SQLException {
+		return rDAO.getAllReimbursementsByUser(user);
 	}
 
-	public List<User> viewPastTickets(int id) {
-		return ud.viewPastTickets(id);
+	@Override
+	public Reimbursement addReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException {
+		return rDAO.addReimbursement(reimbursement);
 	}
-
-	public User addReimbursementRequest(int u, Double amount, String reimbursemntType) {
-		return ud.addReimbursementRequest(u, amount, reimbursemntType);
-	}
+	
 
 }

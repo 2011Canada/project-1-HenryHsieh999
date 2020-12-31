@@ -5,18 +5,12 @@ import java.sql.Timestamp;
 public class User{
 	
 	private int userId;
-	private int reimbId;
-	private Double amount;
 	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
 	private String tpe;
 	private String email;
-	private String reimbursementType;
-	private String reimbursementStatus;
-	private Timestamp reimbSubmitted;
-	private Timestamp reimbResolved;
 	
 	public User() {
 		super();
@@ -49,33 +43,9 @@ public class User{
 		this.lastName = lastName;
 	}
 
-	public User(double amount, Timestamp reimbSubmitted , String reimbStatus, String reimbType, int userId) {
-		super();
-		this.amount = amount;
-		this.setReimbSubmitted(reimbSubmitted);
-		this.setReimbursementStatus(reimbStatus);
-		this.reimbursementType = reimbType;
-		this.userId = userId;
-	}
-	public User(int ersReimbAuthor, int reimbId, double amount, Timestamp reimbSubmitted, Timestamp reimbResolved,	String reimbStatus, String reimbType) {
-		super();
-		this.userId = ersReimbAuthor;
-		this.reimbId = reimbId;
-		this.amount = amount;
-		this.setReimbSubmitted(reimbSubmitted);
-		this.setReimbResolved(reimbResolved);
-		this.reimbursementStatus = reimbStatus;
-		this.reimbursementType = reimbType;		
-	}
-	public User(int reimbId, double amount, Timestamp reimbSubmitted, String reimbStatus, String reimbType, int ersReimbAuthor) {
-		super();
-		this.reimbId = reimbId;
-		this.amount = amount;
-		this.setReimbSubmitted(reimbSubmitted);
-		this.reimbursementStatus = reimbStatus;
-		this.reimbursementType = reimbType;
-		this.userId = ersReimbAuthor;		
-	}
+
+	
+
 	public int getUserId() {
 		return userId;
 	}
@@ -130,53 +100,13 @@ public class User{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public Double getAmount() {
-		return amount;
-	}
-	public void setAmount(Double amount) {
-		this.amount = amount;
-	}
-	public String getReimbursementType() {
-		return reimbursementType;
-	}
-	public void setReimbursementType(String reimbursementType) {
-		this.reimbursementType = reimbursementType;
-	}
-
-	public String getReimbursementStatus() {
-		return reimbursementStatus;
-	}
-	public void setReimbursementStatus(String reimbursementStatus) {
-		this.reimbursementStatus = reimbursementStatus;
-	}
-
-	public int getReimbId() {
-		return reimbId;
-	}
-	public void setReimbId(int reimbId) {
-		this.reimbId = reimbId;
-	}
-	public Timestamp getReimbSubmitted() {
-		return reimbSubmitted;
-	}
-	public void setReimbSubmitted(Timestamp reimbSubmitted) {
-		this.reimbSubmitted = reimbSubmitted;
-	}
-	public Timestamp getReimbResolved() {
-		return reimbResolved;
-	}
-	public void setReimbResolved(Timestamp reimbResolved) {
-		this.reimbResolved = reimbResolved;
-	}
-	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", reimbId=" + reimbId + ", amount=" + amount + ", username=" + username
-				+ ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", tpe=" + tpe
-				+ ", email=" + email + ", reimbursementType=" + reimbursementType + ", reimbursementStatus="
-				+ reimbursementStatus + ", reimbSubmitted=" + reimbSubmitted + ", reimbResolved=" + reimbResolved + "]";
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", tpe=" + tpe + ", email=" + email + "]";
 	}
+
+	
 	
 	
 

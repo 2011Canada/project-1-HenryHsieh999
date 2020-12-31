@@ -16,47 +16,23 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EmployeeAddReimbursementServlet</display-name>
-    <servlet-name>EmployeeAddReimbursementServlet</servlet-name>
-    <servlet-class>com.revature.servlets.EmployeeAddReimbursementServlet</servlet-class>
-    <init-param>
-      <param-name>DefaultRole</param-name>
-      <param-value>Employee</param-value>
-    </init-param>
+    <display-name>EmployeeReimbursementServlet</display-name>
+    <servlet-name>EmployeeReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeeReimbursementServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EmployeeAddReimbursementServlet</servlet-name>
-    <url-pattern>/reimbursementRequest</url-pattern>
+    <servlet-name>EmployeeReimbursementServlet</servlet-name>
+    <url-pattern>/employee/reimbursementRequest/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EmployeeViewAllPastTicketsServlet</display-name>
-    <servlet-name>EmployeeViewAllPastTicketsServlet</servlet-name>
-    <servlet-class>com.revature.servlets.EmployeeViewAllPastTicketsServlet</servlet-class>
+    <display-name>EmployeePastTicketsServlet</display-name>
+    <servlet-name>EmployeePastTicketsServlet</servlet-name>
+    <servlet-class>com.revature.servlets.EmployeePastTicketsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EmployeeViewAllPastTicketsServlet</servlet-name>
-    <url-pattern>/EmployeeViewAllPastTicketsServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ViewAllPastTicketsController</display-name>
-    <servlet-name>ViewAllPastTicketsController</servlet-name>
-    <servlet-class>com.revature.controllers.ViewAllPastTicketsController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewAllPastTicketsController</servlet-name>
-    <url-pattern>/ViewAllPastTicketsController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ManagerViewAllTicketsController</display-name>
-    <servlet-name>ManagerViewAllTicketsController</servlet-name>
-    <servlet-class>com.revature.controllers.ManagerViewAllTicketsController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManagerViewAllTicketsController</servlet-name>
-    <url-pattern>/ManagerViewAllTicketsController</url-pattern>
+    <servlet-name>EmployeePastTicketsServlet</servlet-name>
+    <url-pattern>/employee/viewPastTickets/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -66,52 +42,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ManagerViewAllTicketsServlet</servlet-name>
-    <url-pattern>/ManagerViewAllTicketsServlet</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <filter-name>CORS</filter-name>
-    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
-    <init-param>
-      <param-name>cors.allowed.origins</param-name>
-      <param-value>*</param-value>
-    </init-param>
-    <init-param>
-      <param-name>cors.allowed.methods</param-name>
-      <param-value>GET, POST, HEAD, OPTIONS, PUT, DELETE</param-value>
-    </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>CORS</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ManagerARReimbursement</display-name>
-    <servlet-name>ManagerARReimbursement</servlet-name>
-    <servlet-class>com.revature.servlets.ManagerARReimbursement</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManagerARReimbursement</servlet-name>
-    <url-pattern>/ManagerARReimbursement</url-pattern>
+    <url-pattern>/manager/viewAllReimbursementRequest/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ManagerApproveReimbursementController</display-name>
-    <servlet-name>ManagerApproveReimbursementController</servlet-name>
-    <servlet-class>com.revature.controllers.ManagerApproveReimbursementController</servlet-class>
+    <display-name>ManagerUpdateReimbursementServlet</display-name>
+    <servlet-name>ManagerUpdateReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlets.ManagerUpdateReimbursementServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ManagerApproveReimbursementController</servlet-name>
-    <url-pattern>/ManagerApproveReimbursementController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ManagerRejectReimbursementController</display-name>
-    <servlet-name>ManagerRejectReimbursementController</servlet-name>
-    <servlet-class>com.revature.controllers.ManagerRejectReimbursementController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManagerRejectReimbursementController</servlet-name>
-    <url-pattern>/ManagerRejectReimbursementController</url-pattern>
+    <servlet-name>ManagerUpdateReimbursementServlet</servlet-name>
+    <url-pattern>/manager/updateReimbursementRequestStatus/*</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,13 +1,12 @@
 package com.revature.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import com.revature.exceptions.UserNotFoundException;
-import com.revature.models.User;
+import com.revature.models.Reimbursement;
 
 public interface ManagerServiceInterface {
-	public List<User> managerViewAllTickets();
-	public User approveReimbursement(int reimbId);
-	public User rejectReimbursement(int reimbId);
-	public List<User> filterReimbursementStatus(String reimbStatus);
+	public List<Reimbursement> viewAllTickets() throws SQLException;
+	public List<Reimbursement> filterReimbursementStatus(String reimbStatus) throws SQLException;
+	public Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException;
 }

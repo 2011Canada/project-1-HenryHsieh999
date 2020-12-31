@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -27,41 +28,44 @@ public class AuthController {
 		Credentials cred = om.readValue(req.getInputStream(), Credentials.class);
 		User u = usi.login(cred.getUsername(), cred.getPassword());
 		//use your session to keep track of your user permission level
-		HttpSession sess = req.getSession();
-		//user.getRole
 		
+		RequestDispatcher rd = null;
+		
+		HttpSession sess = req.getSession();
 		if(u.getTpe().equals("employee")) {
 			System.out.println("employee");
-			Integer UID = u.getUserId();
-			sess.setAttribute("UserID", UID);
-			if(null == sess.getAttribute("UserID")) {
+			
+			sess.setAttribute("user", u);
+			sess.setAttribute("userId", u.getUserId());
+			if(null == sess.getAttribute("user")) {
 				System.out.println("attribute is null");
 			}else {
-				System.out.println(UID);
+				System.out.println(sess);
+				System.out.println(sess.getAttribute("user"));
+				System.out.println(sess.getAttribute("userId"));
 			}
-			Cookie ck = new Cookie("UID", UID.toString());
-			res.addCookie(ck);
-			System.out.println(ck);
+//			req.getSession().setAttribute("user", u);
+//			req.getSession().setAttribute("userId", u.getUserId());
+//          res.sendRedirect("welcomeServlet");
+			
+			
 			res.setStatus(200);
 			res.getWriter().write(om.writeValueAsString(u));
 			
 		}else if(u.getTpe().equals("manager")){
 			System.out.println("manager");
-			Integer UID = u.getUserId();
-			sess.setAttribute("UserID", UID);
-			if(null == sess.getAttribute("UserID")) {
+			sess.setAttribute("user", u);
+			sess.setAttribute("userId", u.getUserId());
+			if(null == sess.getAttribute("user")) {
 				System.out.println("attribute is null");
 			}else {
-				System.out.println(UID);
+				System.out.println(sess);
+				System.out.println(sess.getAttribute("user"));
+				System.out.println(sess.getAttribute("userId"));
 			}
-			Cookie ck = new Cookie("UID", UID.toString());
-			res.addCookie(ck);
-			System.out.println(ck);
 			res.setStatus(200);
 			res.getWriter().write(om.writeValueAsString(u));
 		}
-//		res.setStatus(200);
-//		res.getWriter().write(om.writeValueAsString(u));
 	}
 	
 	

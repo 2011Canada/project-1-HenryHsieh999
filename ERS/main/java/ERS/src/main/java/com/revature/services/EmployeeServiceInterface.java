@@ -1,10 +1,14 @@
 package com.revature.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import com.revature.models.Reimbursement;
 import com.revature.models.User;
 
 public interface EmployeeServiceInterface {
-	public User addReimbursementRequest(int u, Double amount, String reimbursemntType);
-	public List<User> viewPastTickets(int id);
+
+	List<Reimbursement> viewPastTickets(User user) throws SQLException;
+
+	Reimbursement addReimbursementRequest(User user, Reimbursement reimbursement) throws SQLException;
 }

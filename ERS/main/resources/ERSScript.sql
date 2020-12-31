@@ -68,6 +68,7 @@ insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reim
 update ers_reimbursement set reimb_status = 'approved' where reimb_id = 1;
 update ers_reimbursement set reimb_status = 'rejected' where reimb_id = 1;
 update ers_reimbursement set reimb_status = 'pending' where reimb_id = 1;
+
 --simple select statements to check tables 
 select * from ers_reimbursement;
 select * from ers_user_roles;
