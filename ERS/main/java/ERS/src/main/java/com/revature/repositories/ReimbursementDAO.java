@@ -17,6 +17,7 @@ public interface ReimbursementDAO {
 	List<Reimbursement> getAllPendingReimbursements() throws SQLException;
 	List<Reimbursement> getAllApprovedReimbursements() throws SQLException;
 	List<Reimbursement> getAllDeniedReimbursements() throws SQLException;
-	Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException;
+	Reimbursement approveReimbursementStatus(int reimbId) throws SQLException;
+	Reimbursement denyReimbursementStatus(int reimbId) throws SQLException;
 	
 }

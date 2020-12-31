@@ -58,16 +58,34 @@ public class ReimbursementPostgresDAO implements ReimbursementDAO{
 	}
 
 	@Override
-	public Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException {
+	public Reimbursement approveReimbursementStatus(int reimbId) throws SQLException {
 		Connection conn = cf.getConnection();
 		final java.util.Date today = new java.util.Date();
 		final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
 		try {
-			String sql = "update ers_reimbursement set reimb_status = ?, reimb_resolved = ? where reimb_id = ?;";
+			String sql = "update ers_reimbursement set reimb_status = 'approved', reimb_resolved = ? where reimb_id = ?;";
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, reimbStatus);
-			statement.setTimestamp(2, todaySQL);
-			statement.setInt(3, reimbId);
+			statement.setTimestamp(1, todaySQL);
+			statement.setInt(2, reimbId);
+			statement.executeUpdate();		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cf.releaseConnection(conn);
+		}
+		return null;
+	}
+	
+	@Override
+	public Reimbursement denyReimbursementStatus(int reimbId) throws SQLException {
+		Connection conn = cf.getConnection();
+		final java.util.Date today = new java.util.Date();
+		final java.sql.Timestamp todaySQL = new java.sql.Timestamp(today.getTime());
+		try {
+			String sql = "update ers_reimbursement set reimb_status = 'denied', reimb_resolved = ? where reimb_id = ?;";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setTimestamp(1, todaySQL);
+			statement.setInt(2, reimbId);
 			statement.executeUpdate();		
 		}catch(SQLException e) {
 			e.printStackTrace();

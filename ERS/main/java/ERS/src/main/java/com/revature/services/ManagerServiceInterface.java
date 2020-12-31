@@ -10,5 +10,6 @@ public interface ManagerServiceInterface {
 	public List<Reimbursement> viewPending() throws SQLException;
 	public List<Reimbursement> viewApproved() throws SQLException;
 	public List<Reimbursement> viewDenied() throws SQLException;
-	public Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException;
+	public Reimbursement approveReimbursementStatus(int reimbId) throws SQLException;
+	public Reimbursement denyReimbursementStatus(int reimbId) throws SQLException;
 }

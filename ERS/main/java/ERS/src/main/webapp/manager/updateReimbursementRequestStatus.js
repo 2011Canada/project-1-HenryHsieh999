@@ -1,19 +1,15 @@
-async function updateReimbursementStatus(e){
-    e.preventDefault();
+async function approveReimbursementStatus(e){
 
     let id = document.getElementById("reimbId-input").value
     console.log(id)
-    let reimbursementStatus = document.getElementById("status-input").value
-    console.log(reimbursementStatus)
 
     //enhanced object literals
     const updateReimbStatus = {
-        id,
-        reimbursementStatus        
+        id        
     }
 
     try{
-        let res = await fetch("http://localhost:8080/ERS/manager/updateReimbursementRequestStatus/submit",{
+        let res = await fetch("http://localhost:8080/ERS/manager/updateReimbursementRequestStatus/approve",{
             method:"POST",
             body: JSON.stringify(updateReimbStatus),
             headers:{
@@ -28,8 +24,41 @@ async function updateReimbursementStatus(e){
         console.log('Error',error);
     }
 }
-document.getElementsByTagName("form")[0].addEventListener('submit', updateReimbursementStatus)
 
+
+async function denyReimbursementStatus(e){
+
+    let id = document.getElementById("reimbId-input").value
+    console.log(id)
+
+    //enhanced object literals
+    const updateReimbStatus = {
+        id        
+    }
+
+    try{
+        let res = await fetch("http://localhost:8080/ERS/manager/updateReimbursementRequestStatus/deny",{
+            method:"POST",
+            body: JSON.stringify(updateReimbStatus),
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+       
+        let updateReimbursement = await res.json()
+        console.log(updateReimbursement);
+               
+    } catch(error) {
+        console.log('Error',error);
+    }
+}
+if(document.getElementById('approve-button').onclick === true){
+    document.getElementById("update-reimbursement-status").addEventListener('submit', approveReimbursementStatus)
+} else if(document.getElementById('deny-button').onclick === true){
+    document.getElementById("update-reimbursement-status").addEventListener('submit', denyReimbursementStatus)
+} else{
+    console.log("invalid choice")
+}
 
 
 $(document).ready(function(){

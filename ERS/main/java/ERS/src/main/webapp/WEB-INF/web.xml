@@ -44,16 +44,7 @@
     <servlet-name>ManagerViewAllTicketsServlet</servlet-name>
     <url-pattern>/manager/viewAllReimbursementRequest/*</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ManagerUpdateReimbursementServlet</display-name>
-    <servlet-name>ManagerUpdateReimbursementServlet</servlet-name>
-    <servlet-class>com.revature.servlets.ManagerUpdateReimbursementServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManagerUpdateReimbursementServlet</servlet-name>
-    <url-pattern>/manager/updateReimbursementRequestStatus/*</url-pattern>
-  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>ManagerViewAllPendingServlet</display-name>
@@ -83,5 +74,25 @@
   <servlet-mapping>
     <servlet-name>ManagerViewAllDeniedServlet</servlet-name>
     <url-pattern>/manager/filterRequestStatus/denied</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerApproveReimbursementServlet</display-name>
+    <servlet-name>ManagerApproveReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlets.ManagerApproveReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerApproveReimbursementServlet</servlet-name>
+    <url-pattern>/manager/updateReimbursementRequestStatus/approve</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerDenyReimbursementServlet</display-name>
+    <servlet-name>ManagerDenyReimbursementServlet</servlet-name>
+    <servlet-class>com.revature.servlets.ManagerDenyReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerDenyReimbursementServlet</servlet-name>
+    <url-pattern>/manager/updateReimbursementRequestStatus/deny</url-pattern>
   </servlet-mapping>
 </web-app>

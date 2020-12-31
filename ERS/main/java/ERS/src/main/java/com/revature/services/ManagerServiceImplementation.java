@@ -17,8 +17,13 @@ public class ManagerServiceImplementation implements ManagerServiceInterface{
 	}
 
 	@Override
-	public Reimbursement updateReimbursementStatus(int reimbId, String reimbStatus) throws SQLException {
-		return rDAO.updateReimbursementStatus(reimbId, reimbStatus);
+	public Reimbursement approveReimbursementStatus(int reimbId) throws SQLException {
+		return rDAO.approveReimbursementStatus(reimbId);
+	}
+	
+	@Override
+	public Reimbursement denyReimbursementStatus(int reimbId) throws SQLException {
+		return rDAO.denyReimbursementStatus(reimbId);
 	}
 
 	@Override
