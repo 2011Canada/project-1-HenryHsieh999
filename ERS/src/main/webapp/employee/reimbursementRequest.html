@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Reimbursement Request</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="./reimbursementRequest.css" rel="stylesheet" id="style">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <h1 class="page_title">Reimbursement Request</h1>
+    <div class="select_menu">
+        <div class="col text-center">
+            <form id="reimbursement-submit-form">
+                <br><br>
+                <input type="number" id="amount-input" class="form-control" min="0" step=".01" placeholder="Amount Input" style="width: 300px; margin: auto;">
+                <br><br>
+                <input type="text" id="description-input" class="form-control" placeholder="Please Enter Description" style="width:1500px; margin:auto;"/>
+                <br><br>
+                <button type="submit" onclick="travelReimbursementStatus()" id="travel-button" class="btn btn-info btn-md">Travel</button>
+                <button type="submit" onclick="lodgingReimbursementStatus()" id="lodging-button" class="btn btn-info btn-md">Lodging</button>
+                <button type="submit" onclick="foodReimbursementStatus()" id="food-button" class="btn btn-info btn-md">Food</button>
+                <button type="submit" onclick="otherReimbursementStatus()" id="other-button" class="btn btn-info btn-md">Other</button>
+                </div>
+            </form>
+    </div>
+    <div class="side_menu">
+        <div class="burger_box">
+            <div class="menu-icon-container">
+                <a href="#" class="menu-icon js-menu_toggle closed">
+                    <span class="menu-icon_box">
+                        <span class="menu-icon_line menu-icon_line--1"></span>
+                        <span class="menu-icon_line menu-icon_line--2"></span>
+                        <span class="menu-icon_line menu-icon_line--3"></span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="px-5">
+            <h2 class="menu_title">Options</h2>
+            <ul class="list_load">
+                <li class="list_item" id="employeeMain"><a href="./employeeMain.html">Employee Main Menu</a></li>
+                <li class="list_item" id="view-past-tickets"><a href="./viewPastTickets.html">View Past Tickets</a></li>
+                <li class="list_item" id="logout"><a href="../login.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./reimbursementRequest.js"></script>
+  
+</body>
+</html>

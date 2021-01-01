@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Update Reimbursement Status</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="./updateReimbursementRequestStatus.css" rel="stylesheet" id="style">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1 class="page_title">Update Reimbursement Request Status</h1>
+    <div class="select_menu">
+        <div class="col text-center">
+            <form id="update-reimbursement-status">
+                <br><br>
+                <input type="number" id="reimbId-input" class="form-control" placeholder="Reimbursement ID Input" style="width: 300px; margin: auto;"/>
+                <br><br>                
+                <button type="submit" onclick="approveReimbursementStatus()" id="approve-button" class="btn btn-success btn-md">Approved</button>
+                <button type="submit" onclick="denyReimbursementStatus()" id="deny-button" class="btn btn-danger btn-md">Denied</button>
+            </form>
+        </div>
+    </div>
+    <div class="side_menu">
+        <div class="burger_box">
+            <div class="menu-icon-container">
+                <a href="#" class="menu-icon js-menu_toggle closed">
+                    <span class="menu-icon_box">
+                        <span class="menu-icon_line menu-icon_line--1"></span>
+                        <span class="menu-icon_line menu-icon_line--2"></span>
+                        <span class="menu-icon_line menu-icon_line--3"></span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="px-5">
+            <h2 class="menu_title">Options</h2>
+            <ul class="list_load">
+                <li class="list_item" id="employeeMain"><a href="./managerMain.html">Manager Main Menu</a></li>
+                <li class="list_item" id="view-past-tickets"><a href="./viewAllReimbursementRequest.html">View All Reimbursement Requests</a></li>
+                <li class="list_item" id="view-past-tickets"><a href="./filterRequestStatus.html">Filter Requests By Status</a></li>
+                <li class="list_item" id="logout"><a href="../login.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./updateReimbursementRequestStatus.js"></script>
+  
+</body>
+</html>
