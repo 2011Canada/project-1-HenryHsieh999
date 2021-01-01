@@ -7,8 +7,6 @@ create table ers_user_roles(
 	user_role text
 );
 
-
-
 create table ers_users(
 	ers_users_id serial primary key,
 	ers_username text,
@@ -27,6 +25,7 @@ create table ers_reimbursement(
 	reimb_resolved timestamp,
 	reimb_status text,
 	reimb_type text,
+	reimb_description text,
 	--need to add fk below here
 	ers_reimb_author int4 not null references ers_user_roles(ers_user_role_id)
 );
@@ -59,16 +58,19 @@ select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id 
 --find User ID by ers_username
 select * from ers_user_roles eur left join ers_users eu on eur.ers_user_role_id = eu.user_roles_fk where ers_username = 'ender'; 
 --reimbursement query
-insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (500.15, CURRENT_TIMESTAMP, 'pending', 'lodging', 1);
-insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (1241.15, CURRENT_TIMESTAMP, 'pending', 'lodging', 1);
-insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (4570.15, CURRENT_TIMESTAMP, 'pending', 'lodging', 3);
-insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (786.22, CURRENT_TIMESTAMP, 'pending', 'travel', 1);
-insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, ers_reimb_author) values (946.45, CURRENT_TIMESTAMP, 'pending', 'lodging', 2);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, reimb_description, ers_reimb_author) values (500.15, CURRENT_TIMESTAMP, 'pending', 'Lodging', 'living in hotel', 1);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, reimb_description, ers_reimb_author) values (1241.15, CURRENT_TIMESTAMP, 'pending', 'Lodging', 'living in penthouse', 1);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, reimb_description, ers_reimb_author) values (4570.15, CURRENT_TIMESTAMP, 'pending', 'Lodging', 'living in hilton' , 3);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, reimb_description, ers_reimb_author) values (786.22, CURRENT_TIMESTAMP, 'pending', 'Travel', 'plane ride',1);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_status, reimb_type, reimb_description, ers_reimb_author) values (946.45, CURRENT_TIMESTAMP, 'pending', 'Lodging', 'living in sheridon', 2);
 --approve/reject reimbursement
 update ers_reimbursement set reimb_status = 'approved' where reimb_id = 1;
-update ers_reimbursement set reimb_status = 'rejected' where reimb_id = 1;
+update ers_reimbursement set reimb_status = 'denied' where reimb_id = 1;
 update ers_reimbursement set reimb_status = 'pending' where reimb_id = 1;
-
+--filter reimbursement request
+select * from ers_reimbursement where reimb_status = 'pending';
+select * from ers_reimbursement where reimb_status = 'approved';
+select * from ers_reimbursement where reimb_status = 'denied';
 --simple select statements to check tables 
 select * from ers_reimbursement;
 select * from ers_user_roles;
