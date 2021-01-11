@@ -1,43 +1,75 @@
 # ERS-Base
 ## Project Description
 
-Here goes your awesome project description!
+The Expense Reimbursement System (ERS) will manage the process of reimbursing employees for
+expenses incurred while on company time. All employees in the company can login and submit requests
+for reimbursement and view their past tickets and pending requests. Finance managers can log in and
+view all reimbursement requests and past history for all employees in the company. Finance managers
+are authorized to approve and deny requests for expense reimbursement.
 
 ## Technologies Used
 
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* Java 14.0.2
+* JavaScript ES6
+* HTML5
+* CSS
+* PostgreSQL 13.1
 
 ## Features
 
 List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
+* Both Employees and Managers can login using the same login page!
+* Employees can submit a request for reimbursement under (Food, Travel, Lodging, Other)
+* Managers can approve/deny any ticket
 
 To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+* Improvement to be done on UI
+* Improvement to be done on the way manager approves tickets
 
 ## Getting Started
    
-(include git clone command)
-(include all environment setup steps)
+Windows git clone command:
+git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
 
-> Be sure to include BOTH Windows and Unix command  
-> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
+Mac git clone command:
+git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
 
-- All the `code` required to get started
-- Images of what it should look like
+Requires Java version 8
+[<https://www.oracle.com/ca-en/java/technologies/javase-downloads.html>](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html)
+
+Requires DBeaver
+[<https://dbeaver.io/download/>](https://dbeaver.io/download/)
+
+Requires RDS on AWS
+[<https://aws.amazon.com/>](https://aws.amazon.com/)
+
+Step 1:
+Start Java server
+
+Step 2:
+Connect to database using DBeaver
+
+Step 3:
+Run the included ERSScript on your database
+
+Step 4:
+Go to http://localhost:8080/ERS/login.html in a Chrome incognito tab
+
+Step 5:
+Login using one of the username and passwords provided in ERSScript
 
 ## Usage
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+-Login as either an Employee or as a Manager
+-Employee can apply for reimbursement
+-Employee can view all personal past tickets
+-Employee can logout
+-Manager can view all tickets (both current and past)
+-Manager can approve/decline tickets through the use of the ticket's ID number
+-Manager can filter by ticket status (approved, pending, denied)
+-Manager can logout
 
-## Contributors
 
-> Here list the people who have contributed to this project. (ignore this section, if its a solo project)
 
 ## License
 
