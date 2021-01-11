@@ -28,46 +28,46 @@ To-do list:
 
 ## Getting Started
    
-Windows git clone command:
-git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
+* Windows git clone command:
+* git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
 
-Mac git clone command:
-git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
+* Mac git clone command:
+* git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
 
-Requires Java version 8
-[<https://www.oracle.com/ca-en/java/technologies/javase-downloads.html>](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html)
+* Requires Java version 8
+* [<https://www.oracle.com/ca-en/java/technologies/javase-downloads.html>](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html)
 
-Requires DBeaver
-[<https://dbeaver.io/download/>](https://dbeaver.io/download/)
+* Requires DBeaver
+* [<https://dbeaver.io/download/>](https://dbeaver.io/download/)
 
-Requires RDS on AWS
-[<https://aws.amazon.com/>](https://aws.amazon.com/)
+* Requires RDS on AWS
+* [<https://aws.amazon.com/>](https://aws.amazon.com/)
 
-Step 1:
-Start Java server
+* Step 1:
+* Start Java server
 
-Step 2:
-Connect to database using DBeaver
+* Step 2:
+* Connect to database using DBeaver
 
-Step 3:
-Run the included ERSScript on your database
+* Step 3:
+* Run the included ERSScript on your database
 
-Step 4:
-Go to http://localhost:8080/ERS/login.html in a Chrome incognito tab
+* Step 4:
+* Go to http://localhost:8080/ERS/login.html in a Chrome incognito tab
 
-Step 5:
-Login using one of the username and passwords provided in ERSScript
+* Step 5:
+* Login using one of the username and passwords provided in ERSScript
 
 ## Usage
 
--Login as either an Employee or as a Manager
--Employee can apply for reimbursement
--Employee can view all personal past tickets
--Employee can logout
--Manager can view all tickets (both current and past)
--Manager can approve/decline tickets through the use of the ticket's ID number
--Manager can filter by ticket status (approved, pending, denied)
--Manager can logout
+* Login as either an Employee or as a Manager
+* Employee can apply for reimbursement
+* Employee can view all personal past tickets
+* Employee can logout
+* Manager can view all tickets (both current and past)
+* Manager can approve/decline tickets through the use of the ticket's ID number
+* Manager can filter by ticket status (approved, pending, denied)
+* Manager can logout
 
 
 
