@@ -17,7 +17,7 @@ are authorized to approve and deny requests for expense reimbursement.
 
 ## Features
 
-List of features ready and TODOs for future development
+List of features ready
 * Both Employees and Managers can login using the same login page!
 * Employees can submit a request for reimbursement under (Food, Travel, Lodging, Other)
 * Managers can approve/deny any ticket
