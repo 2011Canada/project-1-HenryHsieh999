@@ -17,45 +17,45 @@ are authorized to approve and deny requests for expense reimbursement.
 
 ## Features
 
-List of features ready
+#List of features ready
 * Both Employees and Managers can login using the same login page!
 * Employees can submit a request for reimbursement under (Food, Travel, Lodging, Other)
 * Managers can approve/deny any ticket
 
-To-do list:
+#To-do list:
 * Improvement to be done on UI
 * Improvement to be done on the way manager approves tickets
 
 ## Getting Started
    
-* Windows git clone command:
+# Windows git clone command:
  * git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
 
-* Mac git clone command:
+# Mac git clone command:
  * git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
 
-* Requires Java version 8
+# Requires Java version 8
  * [<https://www.oracle.com/ca-en/java/technologies/javase-downloads.html>](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html)
 
-* Requires DBeaver
+# Requires DBeaver
  * [<https://dbeaver.io/download/>](https://dbeaver.io/download/)
 
-* Requires RDS on AWS
+# Requires RDS on AWS
  * [<https://aws.amazon.com/>](https://aws.amazon.com/)
 
-* Step 1:
+# Step 1:
  * Start Java server
 
-* Step 2:
+# Step 2:
  * Connect to database using DBeaver
 
-* Step 3:
+# Step 3:
  * Run the included ERSScript on your database
 
-* Step 4:
+# Step 4:
  * Go to http://localhost:8080/ERS/login.html in a Chrome incognito tab
 
-* Step 5:
+# Step 5:
  * Login using one of the username and passwords provided in ERSScript
 
 ## Usage
