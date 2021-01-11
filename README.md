@@ -17,12 +17,12 @@ are authorized to approve and deny requests for expense reimbursement.
 
 ## Features
 
-#List of features ready
+# List of features ready
 * Both Employees and Managers can login using the same login page!
 * Employees can submit a request for reimbursement under (Food, Travel, Lodging, Other)
 * Managers can approve/deny any ticket
 
-#To-do list:
+# To-do list:
 * Improvement to be done on UI
 * Improvement to be done on the way manager approves tickets
 
