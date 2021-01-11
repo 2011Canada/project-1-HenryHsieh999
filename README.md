@@ -41,4 +41,4 @@ To-do list:
 
 ## License
 
-This project uses the following license: [<license_name>](<link>).
+This project uses the following license: [<MIT>](<https://github.com/2011Canada/project-1-HenryHsieh999/blob/main/LICENSE>).
