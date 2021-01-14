@@ -29,11 +29,13 @@ are authorized to approve and deny requests for expense reimbursement.
 ## Getting Started
    
 # Windows git clone command:
- * git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
-
+ ```
+ git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
+```
 # Mac git clone command:
- * git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
-
+ ```
+ git clone https://github.com/2011Canada/project-1-HenryHsieh999.git
+```
 # Requires Java version 8
  * [<https://www.oracle.com/ca-en/java/technologies/javase-downloads.html>](https://www.oracle.com/ca-en/java/technologies/javase-downloads.html)
 
